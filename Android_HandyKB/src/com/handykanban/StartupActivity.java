@@ -1,7 +1,9 @@
 package com.handykanban;
 
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 
 public class StartupActivity extends Activity {
@@ -10,6 +12,18 @@ public class StartupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startup);
+		
+		try {
+        	// dbversion should be consistent with attribute "android:versionCode"
+            int dbversion = 0;
+            String dbname = getString(R.string.DB_NAME);
+        	dbversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+			if( HandyKBDBHelper.createSingleton(getApplicationContext(), dbname, null, dbversion) != null)
+			{
+				//TODO jump to login page
+			}
+		}catch (Exception e){
+		}
 	}
 
 	@Override

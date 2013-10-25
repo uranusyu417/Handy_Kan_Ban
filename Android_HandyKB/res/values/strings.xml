@@ -4,5 +4,11 @@
     <string name="app_name">HandyKanBan</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="TODO">TODO</string>
+    <string name="ONGOING">ONGOING</string>
+    <string name="DONE">DONE</string>
+    <string name="DB_NAME">handy_kan_ban_db</string>
+    <string name="Start_Date">Start Date</string>
+    <string name="Complete_Date">Compte Date</string>
 
 </resources>
