@@ -7,6 +7,10 @@ public class Project {
 	private int maxOfOnGoing;
 	private int maxOfDone;
 	
+	/***
+	 * use project id to get info from DB, and return an object
+	 * @param id
+	 */
 	public Project(int id)
 	{
 		Project _prj = HandyKBDBHelper.getDBHelperInstance().getProjectByID(id);
@@ -17,6 +21,19 @@ public class Project {
 		this.maxOfToDo = _prj.maxOfToDo;
 	}
 	
+	/***
+	 * create an empty object
+	 */
+	public Project()
+	{
+		
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
 	public int getProjectID() {
 		return projectID;
 	}

@@ -10,5 +10,7 @@
     <string name="DB_NAME">handy_kan_ban_db</string>
     <string name="Start_Date">Start Date</string>
     <string name="Complete_Date">Compte Date</string>
+    <string name="NOTE">NOTE:</string>
+    <string name="EDITABLE">Edit Note</string>
 
 </resources>

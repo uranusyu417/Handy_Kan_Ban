@@ -9,6 +9,14 @@ import android.view.Menu;
 public class StartupActivity extends Activity {
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		//TODO jump to login page
+		//test
+		startActivity(new Intent(getApplicationContext(), KanBanUIActivity.class));
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startup);
@@ -20,7 +28,7 @@ public class StartupActivity extends Activity {
         	dbversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
 			if( HandyKBDBHelper.createSingleton(getApplicationContext(), dbname, null, dbversion) != null)
 			{
-				//TODO jump to login page
+				//
 			}
 		}catch (Exception e){
 		}

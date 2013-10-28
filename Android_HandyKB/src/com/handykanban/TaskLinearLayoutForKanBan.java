@@ -44,23 +44,23 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 		this.TaskDate = (TextView)findViewById(R.id.textViewTaskDate);
 		
 		//fill with data
-		TaskTitle.setText(_task.title);
-		if(_task.status != Task.Status.BACKLOG && _task.status != Task.Status.TODO)
+		TaskTitle.setText(_task.getTitle());
+		if(_task.getStatus() != Task.Status.BACKLOG && _task.getStatus() != Task.Status.TODO)
 		{
-			TaskOwner.setText(new User(_task.ownerID).name);
+			TaskOwner.setText(new User(_task.getOwnerID()).getUserID());
 		}
 		else
 		{
 			//do nothing
 		}
 		
-		if(_task.status == Task.Status.ONGOING)
+		if(_task.getStatus() == Task.Status.ONGOING)
 		{
-			TaskDate.setText(_context.getString(R.string.Start_Date) +":  "+_task.startDate);
+			TaskDate.setText(_context.getString(R.string.Start_Date) +":  "+_task.getStartDate());
 		}
-		else if(_task.status == Task.Status.DONE)
+		else if(_task.getStatus() == Task.Status.DONE)
 		{
-			TaskDate.setText(_context.getString(R.string.Complete_Date) +":  "+_task.completeDate);
+			TaskDate.setText(_context.getString(R.string.Complete_Date) +":  "+_task.getCompleteDate());
 		}
 		else
 		{

@@ -27,15 +27,15 @@ public class TaskGroupLinearLayoutForKB extends LinearLayout {
 		this.HeaderStatus = (TextView)findViewById(R.id.textViewHeaderStatus);
 		this.HeaderCount = (TextView)findViewById(R.id.textViewHeaderCount);
 		
-		this.HeaderStatus.setText(_taskGroup.get(0).status.toString());
+		this.HeaderStatus.setText(_taskGroup.get(0).getStatus().toString());
 		
 		String cntstr = "";
-		if(_taskGroup.get(0).status == Task.Status.TODO)
+		if(_taskGroup.get(0).getStatus() == Task.Status.TODO)
 		{
 			cntstr = "    ("+_taskGroup.size()+"/"+LoginSession.getInstance().getActiveProject().getMaxOfToDo();
 			this.HeaderCount.setText(cntstr);
 		}
-		else if(_taskGroup.get(0).status == Task.Status.ONGOING)
+		else if(_taskGroup.get(0).getStatus() == Task.Status.ONGOING)
 		{
 			cntstr = "    ("+_taskGroup.size()+"/"+LoginSession.getInstance().getActiveProject().getMaxOfOnGoing();
 			this.HeaderCount.setText(cntstr);
