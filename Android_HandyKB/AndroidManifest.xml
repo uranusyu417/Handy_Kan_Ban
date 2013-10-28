@@ -22,7 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="KanBanUIActivity"></activity>
+        <activity android:name="com.handykanban.KanBanUIActivity" >
+        </activity>
+        <activity
+            android:name="com.handykanban.TaskDetalInfoActivity"
+            android:label="@string/title_activity_task_detal_info" >
+        </activity>
     </application>
 
 </manifest>

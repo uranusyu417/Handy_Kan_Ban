@@ -12,5 +12,8 @@
     <string name="Complete_Date">Compte Date</string>
     <string name="NOTE">NOTE:</string>
     <string name="EDITABLE">Edit Note</string>
+    <string name="title_activity_task_detal_info">TaskDetalInfoActivity</string>
+    <string name="button_taskinfo_assigntome">ASSIGNTOME</string>
+    <string name="button_taskinfo_update">UPDATE</string>
 
 </resources>
