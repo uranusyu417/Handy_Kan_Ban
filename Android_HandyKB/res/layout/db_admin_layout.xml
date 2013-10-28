@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editTextProjectName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Project Name..." >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextProjectMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Max..."
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/buttonAddProject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Project" />
+
+    <EditText
+        android:id="@+id/editTextUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="User Name..." />
+
+    <Button
+        android:id="@+id/buttonAddUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AddUser" />
+
+    <EditText
+        android:id="@+id/editTextTaskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Task Title..." />
+
+    <RadioGroup
+        android:id="@+id/radioGroupTaskPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="P1" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P2" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P3" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroupTaskStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Backlog" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TODO" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OnGoing" />
+        
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DONE" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerTaskProject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AddTask" />
+
+</LinearLayout>

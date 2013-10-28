@@ -4,11 +4,14 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -76,9 +79,7 @@ public class KanBanUIActivity extends Activity {
 		stashedKL = editTextNote.getKeyListener();
 		if (!toggleButtonEditNote.isChecked()) {
 			editTextNote.setKeyListener(null);
-		}
-		
-		initTaskInfo();
+		}		
 	}
 	
 	/**
@@ -168,6 +169,9 @@ public class KanBanUIActivity extends Activity {
 	private void initSpinnerProject()
 	{
 		//TODO get projects information based on loggedin user
+		
+		
+		initTaskInfo();
 	}
 	
 	/**
@@ -176,9 +180,9 @@ public class KanBanUIActivity extends Activity {
 	private void initTaskInfo()
 	{
 		//TODO init task ui
-		loadAllProjectInfoToSpinner();
 	}
 	
+	//for test
 	private void loadAllProjectInfoToSpinner()
 	{
 		ArrayAdapter<Project> prj_adp = new ArrayAdapter<Project>(this, 
@@ -186,6 +190,24 @@ public class KanBanUIActivity extends Activity {
 				                              HandyKBDBHelper.getDBHelperInstance().getAllProjects());
 		prj_adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerProject.setAdapter(prj_adp);
+		
+		spinnerProject.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				Spinner s = (Spinner)arg0;
+				Project p = (Project)s.getSelectedItem();
+				LoginSession.getInstance().setActiveProject(p);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+			}
+			
+		});
 	}
 
 	//TODO implement option menu depending on different loggedin user role

@@ -28,6 +28,8 @@
             android:name="com.handykanban.TaskDetalInfoActivity"
             android:label="@string/title_activity_task_detal_info" >
         </activity>
+        <activity android:name="KanBanUIActivity"></activity>
+        <activity android:name="AdminPage"></activity>
     </application>
 
 </manifest>

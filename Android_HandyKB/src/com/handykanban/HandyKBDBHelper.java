@@ -1,6 +1,7 @@
 package com.handykanban;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -53,7 +54,6 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase arg0) {
 		createDBTables(arg0);
-
 	}
 
 	@Override
@@ -62,6 +62,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 
 	}
 	
+
 	@Override
 	public synchronized void close() {
 		super.close();
@@ -96,6 +97,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 				_user = new User();
 				_user.setUserID(_userId);
 				_user.setName(cur.getString(cur.getColumnIndexOrThrow("Name")));
+				_user.setPassword(cur.getString(cur.getColumnIndex("Password")));
 			}
 			
 			cur.close();
@@ -128,6 +130,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 				_user = new User();
 				_user.setUserID(_userId);
 				_user.setName(cur.getString(cur.getColumnIndexOrThrow("Name")));
+				_user.setPassword(cur.getString(cur.getColumnIndex("Password")));
 				//get role info
 				Cursor r = db.query(UserRoleTableName, null, "UserID="+_userId+" AND ProjectID="+_prj.getProjectID(), 
 			               null, null, null, null);
@@ -269,6 +272,21 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		cv.put("MaxOfOnGoing", p.getMaxOfOnGoing());
 		cv.put("MaxOfToDo", p.getMaxOfToDo());
 		if(db.insert(ProjectTableName, null, cv)>-1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean addNewUser(User u)
+	{
+		ContentValues cv = new ContentValues();
+		cv.put("Name", u.getName());
+		cv.put("Password", u.getPassword());
+		if(db.insert(UserTableName, null, cv)>-1)
 		{
 			return true;
 		}

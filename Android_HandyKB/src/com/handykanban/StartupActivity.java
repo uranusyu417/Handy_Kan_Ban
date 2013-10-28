@@ -1,6 +1,8 @@
 package com.handykanban;
 
 
+import java.util.Random;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +15,7 @@ public class StartupActivity extends Activity {
 		super.onResume();
 		//TODO jump to login page
 		//test
-		startActivity(new Intent(getApplicationContext(), KanBanUIActivity.class));
+		startActivity(new Intent(getApplicationContext(), AdminPage.class));
 	}
 
 	@Override
