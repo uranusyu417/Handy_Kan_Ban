@@ -10,6 +10,8 @@ package com.handykanban;
  * e.g. login user, selected project...
  *
  */
+
+
 public class LoginSession {
 	/**
 	 * singleton

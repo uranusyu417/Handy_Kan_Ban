@@ -8,10 +8,13 @@ import android.view.Menu;
 
 public class StartupActivity extends Activity {
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startup);
+		
+        
 		
 		try {
         	// dbversion should be consistent with attribute "android:versionCode"
@@ -20,11 +23,13 @@ public class StartupActivity extends Activity {
         	dbversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
 			if( HandyKBDBHelper.createSingleton(getApplicationContext(), dbname, null, dbversion) != null)
 			{
-				//test
-				this.startActivityForResult(new Intent(getApplicationContext(), AdminPage.class), 5);
+
+				startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
 			}
 		}catch (Exception e){
 		}
+		
 	}
 
 	@Override

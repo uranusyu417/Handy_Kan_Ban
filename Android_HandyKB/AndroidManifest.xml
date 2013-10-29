@@ -28,8 +28,16 @@
             android:name="com.handykanban.TaskDetalInfoActivity"
             android:label="@string/title_activity_task_detal_info" >
         </activity>
-        <activity android:name="KanBanUIActivity"></activity>
         <activity android:name="AdminPage"></activity>
+        <activity
+            android:name="com.handykanban.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" 
+            android:parentActivityName="com.handykanban.StartupActivity" >
+            <meta-data             
+                android:name="android.support.PARENT_ACTIVITY"             
+                android:value="com.handykanban.StartupActivity" /> 
+        </activity>
     </application>
 
 </manifest>

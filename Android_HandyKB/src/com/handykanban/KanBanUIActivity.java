@@ -26,7 +26,7 @@ public class KanBanUIActivity extends Activity {
 	private ToggleButton toggleButtonEditNote;
 	private TextView textViewDate;
 	private LinearLayout linearLayoutKanBan;
-	
+
 	private KeyListener stashedKL;
 
 	@Override
