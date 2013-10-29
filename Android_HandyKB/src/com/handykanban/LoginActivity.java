@@ -116,41 +116,17 @@ public class LoginActivity extends Activity {
 		View focusView = null;
 
 		// Check for a valid password.
-		if (TextUtils.isEmpty(mPassword)) {
-			mPasswordView.setError(getString(R.string.error_field_required));
-			focusView = mPasswordView;
-			cancel = true;
-		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
-			cancel = true;
-		}
+		
 
 		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail)) {
-			mEmailView.setError(getString(R.string.error_field_required));
-			focusView = mEmailView;
-			cancel = true;
-		} else if (!mEmail.contains("@")) {
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
-			cancel = true;
-		}
-
+		
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
 			focusView.requestFocus();
 		} else {
-			// Show a progress spinner, and kick off a background task to
-			// perform the user login attempt.
-			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
-			showProgress(true);
-			
-			gotoKanBanWindow();
-			
-			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+
+			redirectWindow(mEmail);
 		}
 	}
 	
@@ -158,12 +134,23 @@ public class LoginActivity extends Activity {
 	 * Go to KanBan Main Window
 	 */
 	
-	public void gotoKanBanWindow()
+	public void redirectWindow(String username)
 	{
-		Intent intent = new Intent(this, KanBanUIActivity.class);
+		if(username.equals("admin"))
+		{
+			startActivity(new Intent(this, AdminPage.class));
+		}
+		else
+		{
+			User u = HandyKBDBHelper.getDBHelperInstance().getUserByName(username);
+			if(u!=null)
+			{
+				LoginSession.getInstance().setLoggedInUser(u);
+				Intent intent = new Intent(this, KanBanUIActivity.class);
+				startActivity(intent);
+			}
+		}
 
-		startActivity(intent);
-		
 	}
 
 	/**
@@ -241,6 +228,7 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
+				
 				finish();
 			} else {
 				mPasswordView

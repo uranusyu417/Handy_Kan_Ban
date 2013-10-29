@@ -3,6 +3,7 @@ package com.handykanban;
 import java.util.ArrayList;
 import java.util.Calendar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.view.ContextMenu;
@@ -25,8 +26,9 @@ public class KanBanUIActivity extends Activity {
 	private EditText editTextNote;
 	private ToggleButton toggleButtonEditNote;
 	private TextView textViewDate;
-	private LinearLayout linearLayoutKanBan;
+	private LinearLayout linearLayoutKanBanTasks;
 
+	
 	private KeyListener stashedKL;
 
 	@Override
@@ -44,7 +46,7 @@ public class KanBanUIActivity extends Activity {
 		editTextNote = (EditText)findViewById(R.id.editTextNote);
 		toggleButtonEditNote = (ToggleButton)findViewById(R.id.toggleButtonEditNote);
 		textViewDate = (TextView)findViewById(R.id.textViewDate);	
-		linearLayoutKanBan = (LinearLayout)findViewById(R.id.linearLayoutKanBan);
+		linearLayoutKanBanTasks = (LinearLayout)findViewById(R.id.linearLayoutKanBanTasks);
 		
 		//set spinner action to switch logged in project
 		spinnerProject.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -55,6 +57,7 @@ public class KanBanUIActivity extends Activity {
 				Spinner s = (Spinner)arg0;
 				Project p = (Project)s.getSelectedItem();
 				LoginSession.getInstance().setActiveProject(p);
+				initTaskInfo();
 			}
 
 			@Override
@@ -95,13 +98,14 @@ public class KanBanUIActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		initSpinnerProject();
 		
 		// update note editable state according to toggle button
 		stashedKL = editTextNote.getKeyListener();
 		if (!toggleButtonEditNote.isChecked()) {
 			editTextNote.setKeyListener(null);
-		}		
+		}	
+
+		initSpinnerProject();			
 	}
 	
 	/**
@@ -207,6 +211,9 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void initTaskInfo()
 	{
+		//clear UI control first
+		linearLayoutKanBanTasks.removeAllViews();
+		
 		Project active_prj = LoginSession.getInstance().getActiveProject();
 		
 		if(active_prj!=null)
@@ -216,20 +223,30 @@ public class KanBanUIActivity extends Activity {
                                                                        active_prj.getProjectID(), 
                                                                        Task.Status.TODO);
 			TaskGroupLinearLayoutForKB tgll = new TaskGroupLinearLayoutForKB(this, ts);
-			linearLayoutKanBan.addView(tgll);
+			linearLayoutKanBanTasks.addView(tgll);
+			
 			//OnGoing
-			ts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
+			ArrayList<Task> ots = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
                     active_prj.getProjectID(), 
                     Task.Status.ONGOING);
-			tgll = new TaskGroupLinearLayoutForKB(this, ts);
-			linearLayoutKanBan.addView(tgll);
+			TaskGroupLinearLayoutForKB otgll = new TaskGroupLinearLayoutForKB(this, ots);
+			linearLayoutKanBanTasks.addView(otgll);
+			
 			//Done
-			ts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
+			ArrayList<Task> dts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
                     active_prj.getProjectID(), 
                     Task.Status.DONE);
-			tgll = new TaskGroupLinearLayoutForKB(this, ts);
-			linearLayoutKanBan.addView(tgll);
+			TaskGroupLinearLayoutForKB dtgll = new TaskGroupLinearLayoutForKB(this, dts);
+			linearLayoutKanBanTasks.addView(dtgll);
 		}
+	}
+	
+	private void restartSelf()
+	{
+		Intent intent = getIntent();
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		finish();
+		startActivity(intent);
 	}
 	
 

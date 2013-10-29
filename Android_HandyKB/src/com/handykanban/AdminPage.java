@@ -121,7 +121,6 @@ public class AdminPage extends Activity {
 				{
 					Toast.makeText(arg0.getContext(), "add task success", Toast.LENGTH_LONG).show();
 				}
-				restartSelf();
 			}
 			
 		});

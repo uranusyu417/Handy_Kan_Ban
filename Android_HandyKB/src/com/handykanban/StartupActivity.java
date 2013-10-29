@@ -24,7 +24,7 @@ public class StartupActivity extends Activity {
 			if( HandyKBDBHelper.createSingleton(getApplicationContext(), dbname, null, dbversion) != null)
 			{
 
-				startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+				startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class),1);
 
 			}
 		}catch (Exception e){

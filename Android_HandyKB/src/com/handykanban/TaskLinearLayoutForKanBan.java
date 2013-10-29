@@ -3,6 +3,7 @@ package com.handykanban;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 	 * ONGOING, start date
 	 * otherwise, do not show date */
 	TextView TaskDate;
+	TextView TaskId;
 	
 	public TaskLinearLayoutForKanBan(Context context, Task _task)
 	{
@@ -42,24 +44,28 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 		this.TaskTitle = (TextView)findViewById(R.id.textViewTaskTitle);
 		this.TaskOwner = (TextView)findViewById(R.id.textViewTaskOwner);
 		this.TaskDate = (TextView)findViewById(R.id.textViewTaskDate);
+		this.TaskId = (TextView)findViewById(R.id.textViewTaskId);
 		
 		//fill with data
-		TaskTitle.setText(_task.getTitle());
-		if(_task.getStatus() != Task.Status.BACKLOG && _task.getStatus() != Task.Status.TODO)
+		TaskId.setText(String.valueOf(task.getTaskID()));
+		if(_task.getStatus() == Task.Status.TODO)
 		{
-			TaskOwner.setText(new User(_task.getOwnerID()).getUserID());
+			TaskTitle.setText(_task.getTitle());
+			TaskOwner.setVisibility(INVISIBLE);
+			TaskDate.setVisibility(INVISIBLE);
 		}
-		else
+		else if(_task.getStatus() == Task.Status.ONGOING)
 		{
-			//do nothing
-		}
-		
-		if(_task.getStatus() == Task.Status.ONGOING)
-		{
+			TaskTitle.setText(_task.getTitle());
+			User u = new User(_task.getOwnerID());
+			TaskOwner.setText(u.getName());
 			TaskDate.setText(_context.getString(R.string.Start_Date) +":  "+_task.getStartDate());
 		}
 		else if(_task.getStatus() == Task.Status.DONE)
 		{
+			TaskTitle.setText(_task.getTitle());
+			User u = new User(_task.getOwnerID());
+			TaskOwner.setText(u.getName());
 			TaskDate.setText(_context.getString(R.string.Complete_Date) +":  "+_task.getCompleteDate());
 		}
 		else

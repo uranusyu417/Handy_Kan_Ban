@@ -199,12 +199,12 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 	public User getUserByName(String _name)
 	{
 		User _user = null;
-		Cursor cur = db.query(UserTableName, null, "Name="+_name, null, null, null, null);
+		Cursor cur = db.query(UserTableName, null, "Name=\""+_name+"\"", null, null, null, null);
 		if(cur.moveToNext())
 		{
 			_user = new User();
 			_user.setUserID(cur.getInt(cur.getColumnIndex("UserID")));
-			_user.setName(cur.getString(cur.getColumnIndexOrThrow("Name")));
+			_user.setName(cur.getString(cur.getColumnIndex("Name")));
 			_user.setPassword(cur.getString(cur.getColumnIndex("Password")));
 		}
 		return _user;
