@@ -10,6 +10,8 @@ package com.handykanban;
  * e.g. login user, selected project...
  *
  */
+
+
 public class LoginSession {
 	/**
 	 * singleton
@@ -49,6 +51,7 @@ public class LoginSession {
 
 	public void setActiveProject(Project activeProject) {
 		ActiveProject = activeProject;
+		updateLoggedInUser();
 	}
 
 	public User getLoggedInUser() {
@@ -57,5 +60,10 @@ public class LoginSession {
 
 	public void setLoggedInUser(User loggedInUser) {
 		LoggedInUser = loggedInUser;
+	}
+	
+	private void updateLoggedInUser()
+	{
+		//TODO user info need to be updated according to project change
 	}
 }

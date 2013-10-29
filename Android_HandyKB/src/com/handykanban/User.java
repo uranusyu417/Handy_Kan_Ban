@@ -14,6 +14,7 @@ public class User {
 		this.userID = id;
 		this.name = _u.name;
 		this.role = _u.role;
+		this.password = _u.password;
 	}
 	
 	/***
@@ -24,9 +25,15 @@ public class User {
 		
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 	private int userID;
 	private String name;
 	private Role role;
+	private String password;
 	
 	public int getUserID() {
 		return userID;
@@ -50,6 +57,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public enum Role
@@ -86,12 +101,7 @@ public class User {
 			}
 		}
 	}
-	
-	@Override
-	public String toString() {
-		return name;
-	}
-	
+		
 	@Override
 	public boolean equals(Object o) {
 		User _u = (User)o;

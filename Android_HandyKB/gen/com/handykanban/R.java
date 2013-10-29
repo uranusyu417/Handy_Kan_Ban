@@ -28,34 +28,69 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
-        public static final int buttonAssignToMe=0x7f090005;
-        public static final int buttonTaskUpdate=0x7f090006;
-        public static final int editTextNote=0x7f090008;
-        public static final int editTextTaskDetail=0x7f090002;
-        public static final int editTextTaskTitle=0x7f090000;
-        public static final int spinnerProject=0x7f090007;
-        public static final int spinnerTaskAssingee=0x7f090004;
-        public static final int spinnerTaskPriority=0x7f090001;
-        public static final int spinnerTaskStatus=0x7f090003;
-        public static final int textViewDate=0x7f09000a;
-        public static final int textViewHeaderCount=0x7f09000f;
-        public static final int textViewHeaderStatus=0x7f09000e;
-        public static final int textViewTaskDate=0x7f09000d;
-        public static final int textViewTaskOwner=0x7f09000c;
-        public static final int textViewTaskTitle=0x7f09000b;
-        public static final int toggleButtonEditNote=0x7f090009;
+        public static final int action_forgot_password=0x7f09002f;
+        public static final int action_settings=0x7f090030;
+        public static final int buttonAddProject=0x7f090010;
+        public static final int buttonAddRelation=0x7f090024;
+        public static final int buttonAddTask=0x7f09001e;
+        public static final int buttonAddUser=0x7f090012;
+        public static final int buttonAssignToMe=0x7f09000c;
+        public static final int buttonTaskUpdate=0x7f09000d;
+        public static final int editTextNote=0x7f090027;
+        public static final int editTextProjectMax=0x7f09000f;
+        public static final int editTextProjectName=0x7f09000e;
+        public static final int editTextTaskDetail=0x7f090009;
+        public static final int editTextTaskTitle=0x7f090007;
+        public static final int editTextUserName=0x7f090011;
+        public static final int email=0x7f090003;
+        public static final int linearLayoutKanBan=0x7f090025;
+        public static final int login=0x7f090005;
+        public static final int login_form=0x7f090002;
+        public static final int login_status=0x7f090000;
+        public static final int login_status_message=0x7f090001;
+        public static final int password=0x7f090004;
+        public static final int radioBacklog=0x7f090018;
+        public static final int radioDesigner=0x7f090023;
+        public static final int radioDone=0x7f09001b;
+        public static final int radioGroupRole=0x7f090021;
+        public static final int radioGroupTaskPriority=0x7f090013;
+        public static final int radioGroupTaskStatus=0x7f090017;
+        public static final int radioOnGo=0x7f09001a;
+        public static final int radioP1=0x7f090014;
+        public static final int radioP2=0x7f090015;
+        public static final int radioP3=0x7f090016;
+        public static final int radioPO=0x7f090022;
+        public static final int radioTodo=0x7f090019;
+        public static final int sign_in_button=0x7f090006;
+        public static final int spinnerProject=0x7f090026;
+        public static final int spinnerRelationProject=0x7f090020;
+        public static final int spinnerRelationUser=0x7f09001f;
+        public static final int spinnerTaskAssingee=0x7f09000b;
+        public static final int spinnerTaskOwner=0x7f09001d;
+        public static final int spinnerTaskPriority=0x7f090008;
+        public static final int spinnerTaskProject=0x7f09001c;
+        public static final int spinnerTaskStatus=0x7f09000a;
+        public static final int textViewDate=0x7f090029;
+        public static final int textViewHeaderCount=0x7f09002e;
+        public static final int textViewHeaderStatus=0x7f09002d;
+        public static final int textViewTaskDate=0x7f09002c;
+        public static final int textViewTaskOwner=0x7f09002b;
+        public static final int textViewTaskTitle=0x7f09002a;
+        public static final int toggleButtonEditNote=0x7f090028;
     }
     public static final class layout {
-        public static final int activity_startup=0x7f030000;
-        public static final int activity_task_detal_info=0x7f030001;
-        public static final int kanban_window_layout=0x7f030002;
-        public static final int task_for_kanban_layout=0x7f030003;
-        public static final int task_group_layout=0x7f030004;
+        public static final int activity_login=0x7f030000;
+        public static final int activity_startup=0x7f030001;
+        public static final int activity_task_detal_info=0x7f030002;
+        public static final int db_admin_layout=0x7f030003;
+        public static final int kanban_window_layout=0x7f030004;
+        public static final int task_for_kanban_layout=0x7f030005;
+        public static final int task_group_layout=0x7f030006;
     }
     public static final class menu {
-        public static final int startup=0x7f080000;
-        public static final int task_detal_info=0x7f080001;
+        public static final int login=0x7f080000;
+        public static final int startup=0x7f080001;
+        public static final int task_detal_info=0x7f080002;
     }
     public static final class string {
         public static final int Complete_Date=0x7f050008;
@@ -66,22 +101,37 @@ public final class R {
         public static final int ONGOING=0x7f050004;
         public static final int Start_Date=0x7f050007;
         public static final int TODO=0x7f050003;
+        public static final int action_forgot_password=0x7f050013;
         public static final int action_settings=0x7f050001;
+        public static final int action_sign_in_register=0x7f050011;
+        public static final int action_sign_in_short=0x7f050012;
         public static final int app_name=0x7f050000;
         public static final int button_taskinfo_assigntome=0x7f05000c;
         public static final int button_taskinfo_update=0x7f05000d;
+        public static final int error_field_required=0x7f050018;
+        public static final int error_incorrect_password=0x7f050017;
+        public static final int error_invalid_email=0x7f050015;
+        public static final int error_invalid_password=0x7f050016;
         public static final int hello_world=0x7f050002;
+        public static final int login_progress_signing_in=0x7f050014;
+        /**  Strings related to login 
+         */
+        public static final int prompt_email=0x7f05000f;
+        public static final int prompt_password=0x7f050010;
+        public static final int title_activity_login=0x7f05000e;
         public static final int title_activity_task_detal_info=0x7f05000b;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -100,5 +150,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int LoginFormContainer=0x7f070002;
     }
 }
