@@ -1,22 +1,12 @@
 package com.handykanban;
 
 
-import java.util.Random;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 
 public class StartupActivity extends Activity {
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		//TODO jump to login page
-		//test
-		startActivity(new Intent(getApplicationContext(), AdminPage.class));
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +20,18 @@ public class StartupActivity extends Activity {
         	dbversion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
 			if( HandyKBDBHelper.createSingleton(getApplicationContext(), dbname, null, dbversion) != null)
 			{
-				//
+				//test
+				this.startActivityForResult(new Intent(getApplicationContext(), AdminPage.class), 5);
 			}
 		}catch (Exception e){
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		//shutdown DB
+		HandyKBDBHelper.getDBHelperInstance().close();
 	}
 
 	@Override
@@ -41,6 +39,12 @@ public class StartupActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.startup, menu);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		finish();
 	}
 
 }

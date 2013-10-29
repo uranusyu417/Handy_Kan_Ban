@@ -24,30 +24,55 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
+        public static final int action_settings=0x7f080028;
+        public static final int buttonAddProject=0x7f080009;
+        public static final int buttonAddRelation=0x7f08001d;
+        public static final int buttonAddTask=0x7f080017;
+        public static final int buttonAddUser=0x7f08000b;
         public static final int buttonAssignToMe=0x7f080005;
         public static final int buttonTaskUpdate=0x7f080006;
-        public static final int editTextNote=0x7f080008;
+        public static final int editTextNote=0x7f080020;
+        public static final int editTextProjectMax=0x7f080008;
+        public static final int editTextProjectName=0x7f080007;
         public static final int editTextTaskDetail=0x7f080002;
         public static final int editTextTaskTitle=0x7f080000;
-        public static final int spinnerProject=0x7f080007;
+        public static final int editTextUserName=0x7f08000a;
+        public static final int linearLayoutKanBan=0x7f08001e;
+        public static final int radioBacklog=0x7f080011;
+        public static final int radioDesigner=0x7f08001c;
+        public static final int radioDone=0x7f080014;
+        public static final int radioGroupRole=0x7f08001a;
+        public static final int radioGroupTaskPriority=0x7f08000c;
+        public static final int radioGroupTaskStatus=0x7f080010;
+        public static final int radioOnGo=0x7f080013;
+        public static final int radioP1=0x7f08000d;
+        public static final int radioP2=0x7f08000e;
+        public static final int radioP3=0x7f08000f;
+        public static final int radioPO=0x7f08001b;
+        public static final int radioTodo=0x7f080012;
+        public static final int spinnerProject=0x7f08001f;
+        public static final int spinnerRelationProject=0x7f080019;
+        public static final int spinnerRelationUser=0x7f080018;
         public static final int spinnerTaskAssingee=0x7f080004;
+        public static final int spinnerTaskOwner=0x7f080016;
         public static final int spinnerTaskPriority=0x7f080001;
+        public static final int spinnerTaskProject=0x7f080015;
         public static final int spinnerTaskStatus=0x7f080003;
-        public static final int textViewDate=0x7f08000a;
-        public static final int textViewHeaderCount=0x7f08000f;
-        public static final int textViewHeaderStatus=0x7f08000e;
-        public static final int textViewTaskDate=0x7f08000d;
-        public static final int textViewTaskOwner=0x7f08000c;
-        public static final int textViewTaskTitle=0x7f08000b;
-        public static final int toggleButtonEditNote=0x7f080009;
+        public static final int textViewDate=0x7f080022;
+        public static final int textViewHeaderCount=0x7f080027;
+        public static final int textViewHeaderStatus=0x7f080026;
+        public static final int textViewTaskDate=0x7f080025;
+        public static final int textViewTaskOwner=0x7f080024;
+        public static final int textViewTaskTitle=0x7f080023;
+        public static final int toggleButtonEditNote=0x7f080021;
     }
     public static final class layout {
         public static final int activity_startup=0x7f030000;
         public static final int activity_task_detal_info=0x7f030001;
-        public static final int kanban_window_layout=0x7f030002;
-        public static final int task_for_kanban_layout=0x7f030003;
-        public static final int task_group_layout=0x7f030004;
+        public static final int db_admin_layout=0x7f030002;
+        public static final int kanban_window_layout=0x7f030003;
+        public static final int task_for_kanban_layout=0x7f030004;
+        public static final int task_group_layout=0x7f030005;
     }
     public static final class menu {
         public static final int startup=0x7f070000;

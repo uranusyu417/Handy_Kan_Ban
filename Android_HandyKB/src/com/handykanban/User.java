@@ -23,6 +23,11 @@ public class User {
 		
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 	private int userID;
 	private String name;
 	private Role role;

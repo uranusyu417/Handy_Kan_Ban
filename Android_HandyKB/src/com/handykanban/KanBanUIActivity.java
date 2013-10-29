@@ -1,10 +1,10 @@
 package com.handykanban;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.KeyListener;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -24,6 +25,7 @@ public class KanBanUIActivity extends Activity {
 	private EditText editTextNote;
 	private ToggleButton toggleButtonEditNote;
 	private TextView textViewDate;
+	private LinearLayout linearLayoutKanBan;
 	
 	private KeyListener stashedKL;
 
@@ -41,8 +43,28 @@ public class KanBanUIActivity extends Activity {
 		spinnerProject = (Spinner)findViewById(R.id.spinnerProject);
 		editTextNote = (EditText)findViewById(R.id.editTextNote);
 		toggleButtonEditNote = (ToggleButton)findViewById(R.id.toggleButtonEditNote);
-		textViewDate = (TextView)findViewById(R.id.textViewDate);				
+		textViewDate = (TextView)findViewById(R.id.textViewDate);	
+		linearLayoutKanBan = (LinearLayout)findViewById(R.id.linearLayoutKanBan);
+		
+		//set spinner action to switch logged in project
+		spinnerProject.setOnItemSelectedListener(new OnItemSelectedListener(){
 
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				Spinner s = (Spinner)arg0;
+				Project p = (Project)s.getSelectedItem();
+				LoginSession.getInstance().setActiveProject(p);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// do nothing
+			}
+
+		});
+
+		//set toggle button to control note editable or not
 		toggleButtonEditNote.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -168,9 +190,15 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void initSpinnerProject()
 	{
-		//TODO get projects information based on loggedin user
+		//load projects info into spinner
+		User loggedinuser = LoginSession.getInstance().getLoggedInUser();
+		ArrayList<Project> prjs = HandyKBDBHelper.getDBHelperInstance().getProjectsByUserID(loggedinuser.getUserID());
+		ArrayAdapter<Project> prj_adp = new ArrayAdapter<Project>(this,
+				android.R.layout.simple_spinner_item, prjs);
+		prj_adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerProject.setAdapter(prj_adp);
 		
-		
+		//initialize task info based on active project.
 		initTaskInfo();
 	}
 	
@@ -179,36 +207,31 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void initTaskInfo()
 	{
-		//TODO init task ui
+		Project active_prj = LoginSession.getInstance().getActiveProject();
+		
+		if(active_prj!=null)
+		{			
+			//todo
+			ArrayList<Task> ts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
+                                                                       active_prj.getProjectID(), 
+                                                                       Task.Status.TODO);
+			TaskGroupLinearLayoutForKB tgll = new TaskGroupLinearLayoutForKB(this, ts);
+			linearLayoutKanBan.addView(tgll);
+			//OnGoing
+			ts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
+                    active_prj.getProjectID(), 
+                    Task.Status.ONGOING);
+			tgll = new TaskGroupLinearLayoutForKB(this, ts);
+			linearLayoutKanBan.addView(tgll);
+			//Done
+			ts = HandyKBDBHelper.getDBHelperInstance().getTasksByProjectIDAndStatus(
+                    active_prj.getProjectID(), 
+                    Task.Status.DONE);
+			tgll = new TaskGroupLinearLayoutForKB(this, ts);
+			linearLayoutKanBan.addView(tgll);
+		}
 	}
 	
-	//for test
-	private void loadAllProjectInfoToSpinner()
-	{
-		ArrayAdapter<Project> prj_adp = new ArrayAdapter<Project>(this, 
-				                              android.R.layout.simple_spinner_item,
-				                              HandyKBDBHelper.getDBHelperInstance().getAllProjects());
-		prj_adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinnerProject.setAdapter(prj_adp);
-		
-		spinnerProject.setOnItemSelectedListener(new OnItemSelectedListener(){
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// TODO Auto-generated method stub
-				Spinner s = (Spinner)arg0;
-				Project p = (Project)s.getSelectedItem();
-				LoginSession.getInstance().setActiveProject(p);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-			}
-			
-		});
-	}
 
 	//TODO implement option menu depending on different loggedin user role
 }
