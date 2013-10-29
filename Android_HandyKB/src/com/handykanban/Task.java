@@ -1,5 +1,6 @@
 package com.handykanban;
 
+
 public class Task {
 	private int taskID;
 	private String title;

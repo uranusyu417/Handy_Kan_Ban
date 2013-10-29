@@ -10,6 +10,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.handykanban.Task.Priority;
+import com.handykanban.Task.Status;
+
 public class HandyKBDBHelper extends SQLiteOpenHelper {
 	
 	private static final String TAG="HandyKBDBHelper";
@@ -167,6 +170,25 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		return users;
 	}
 	
+	/**
+	 * get all user objects belonging to one project
+	 * @param _prjId
+	 * @return
+	 */
+	public ArrayList<User> getUsersByProject(int _prjId)
+	{
+		Project _p = getProjectByID(_prjId);
+		
+		if(_p != null)
+		{
+			return(getUsersByProject(_p));
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	/***
 	 * get specific project object
 	 * @param _prjId
@@ -190,7 +212,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		
 		return _p;
 	}
-	
+		
 	private void createDBTables(SQLiteDatabase db) {
 		// task table
 		db.execSQL("CREATE TABLE IF NOT EXISTS "
@@ -277,5 +299,58 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 			return false;
 		}
 	}
+	
+	/**
+	 * get task object from database by task id
+	 * @return Task
+	 */
+	public Task getTaskById(int _taskId)
+	{	
+		Task _task = null;
+		
+		Cursor cur = db.query(TaskTableName, null, "TaskID=?", 
+	             new String[]{String.valueOf(_taskId)}, null, null, null);	
 
+		if(cur.moveToNext())
+		{
+			_task =  new Task();
+			_task.setTaskID(_taskId);
+			_task.setCompleteDate(cur.getString(cur.getColumnIndex("CompleteDate")));
+			_task.setDetail(cur.getString(cur.getColumnIndex("Detail")));
+			_task.setOwnerID(cur.getInt(cur.getColumnIndex("OwnerID")));
+			_task.setPriority(Priority.intToPriority(cur.getInt(cur.getColumnIndex("Priority"))));
+			_task.setProjectID(cur.getInt(cur.getColumnIndex("ProjectID")));
+			_task.setStartDate(cur.getString(cur.getColumnIndex("StartDate")));
+			_task.setStatus(Status.intToStatus(cur.getInt(cur.getColumnIndex("Status"))));
+			_task.setTitle(cur.getString(cur.getColumnIndex("Title")));
+		}
+		cur.close();		
+		
+		return _task;
+	}	
+	
+
+	/**
+	 * update task record
+	 * @return true if successful
+	 */
+	public boolean updateTaskInfo(Task _task)
+	{
+		ContentValues c = new ContentValues();
+		
+		c.put("TaskID", _task.getTaskID());
+		c.put("Title", _task.getTitle());
+		c.put("Detail", _task.getDetail());
+		c.put("Priority", Priority.PriorityToInt(_task.getPriority()));
+		c.put("StartDate", _task.getStartDate());
+		c.put("CompleteDate", _task.getCompleteDate());
+		c.put("OwnerID", _task.getOwnerID());
+		c.put("Status", Status.StatusToInt(_task.getStatus()));
+		c.put("ProjectID", _task.getProjectID());
+		
+		db.update(TaskTableName, c, "TaskID=?", new String[] {Integer.toString(_task.getTaskID())});
+		
+		return true;
+	}	
+	
 }

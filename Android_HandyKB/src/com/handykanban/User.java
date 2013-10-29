@@ -1,5 +1,7 @@
 package com.handykanban;
 
+
+
 public class User {
 	
 	/***
@@ -83,5 +85,16 @@ public class User {
 			default: return -1;
 			}
 		}
-	}	
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		User _u = (User)o;
+		return userID==_u.userID;
+	}
 }

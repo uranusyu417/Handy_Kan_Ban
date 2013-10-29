@@ -57,8 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/spinnerTaskAssingee"
         android:layout_below="@+id/spinnerTaskAssingee"
-        android:text="@string/button_taskinfo_assigntome"
-        android:onClick="storeTaskData" />
+        android:text="@string/button_taskinfo_assigntome"/>
 
     <Button
         android:id="@+id/buttonTaskUpdate"
@@ -66,7 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/spinnerTaskAssingee"
         android:layout_below="@+id/spinnerTaskAssingee"
-        android:text="@string/button_taskinfo_update"
-        android:onClick="storeTaskData" />
+        android:text="@string/button_taskinfo_update"/>
 
 </RelativeLayout>

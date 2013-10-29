@@ -8,6 +8,10 @@
 package com.handykanban;
 
 public final class R {
+    public static final class array {
+        public static final int taskinfo_priority=0x7f060000;
+        public static final int taskinfo_status=0x7f060001;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -24,23 +28,23 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
-        public static final int buttonAssignToMe=0x7f080005;
-        public static final int buttonTaskUpdate=0x7f080006;
-        public static final int editTextNote=0x7f080008;
-        public static final int editTextTaskDetail=0x7f080002;
-        public static final int editTextTaskTitle=0x7f080000;
-        public static final int spinnerProject=0x7f080007;
-        public static final int spinnerTaskAssingee=0x7f080004;
-        public static final int spinnerTaskPriority=0x7f080001;
-        public static final int spinnerTaskStatus=0x7f080003;
-        public static final int textViewDate=0x7f08000a;
-        public static final int textViewHeaderCount=0x7f08000f;
-        public static final int textViewHeaderStatus=0x7f08000e;
-        public static final int textViewTaskDate=0x7f08000d;
-        public static final int textViewTaskOwner=0x7f08000c;
-        public static final int textViewTaskTitle=0x7f08000b;
-        public static final int toggleButtonEditNote=0x7f080009;
+        public static final int action_settings=0x7f090010;
+        public static final int buttonAssignToMe=0x7f090005;
+        public static final int buttonTaskUpdate=0x7f090006;
+        public static final int editTextNote=0x7f090008;
+        public static final int editTextTaskDetail=0x7f090002;
+        public static final int editTextTaskTitle=0x7f090000;
+        public static final int spinnerProject=0x7f090007;
+        public static final int spinnerTaskAssingee=0x7f090004;
+        public static final int spinnerTaskPriority=0x7f090001;
+        public static final int spinnerTaskStatus=0x7f090003;
+        public static final int textViewDate=0x7f09000a;
+        public static final int textViewHeaderCount=0x7f09000f;
+        public static final int textViewHeaderStatus=0x7f09000e;
+        public static final int textViewTaskDate=0x7f09000d;
+        public static final int textViewTaskOwner=0x7f09000c;
+        public static final int textViewTaskTitle=0x7f09000b;
+        public static final int toggleButtonEditNote=0x7f090009;
     }
     public static final class layout {
         public static final int activity_startup=0x7f030000;
@@ -50,8 +54,8 @@ public final class R {
         public static final int task_group_layout=0x7f030004;
     }
     public static final class menu {
-        public static final int startup=0x7f070000;
-        public static final int task_detal_info=0x7f070001;
+        public static final int startup=0x7f080000;
+        public static final int task_detal_info=0x7f080001;
     }
     public static final class string {
         public static final int Complete_Date=0x7f050008;
@@ -91,10 +95,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }
