@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.method.KeyListener;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,15 +28,11 @@ public class KanBanUIActivity extends Activity {
 	private ToggleButton toggleButtonEditNote;
 	private TextView textViewDate;
 	private LinearLayout linearLayoutKanBanTasks;
+	private Menu optionMenu;
 
 	
 	private KeyListener stashedKL;
 
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		return super.onContextItemSelected(item);
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +53,7 @@ public class KanBanUIActivity extends Activity {
 					int arg2, long arg3) {
 				Spinner s = (Spinner)arg0;
 				Project p = (Project)s.getSelectedItem();
-				LoginSession.getInstance().setActiveProject(p);
-				initTaskInfo();
+				changeActiveProject(p);
 			}
 
 			@Override
@@ -89,13 +85,6 @@ public class KanBanUIActivity extends Activity {
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		// TODO Auto-generated method stub
-		super.onCreateContextMenu(menu, v, menuInfo);
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		
@@ -108,6 +97,20 @@ public class KanBanUIActivity extends Activity {
 		initSpinnerProject();			
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_kanban_for_po, menu);
+		optionMenu = menu;
+		refreshMenuState(menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
+	}
+
 	/**
 	 * display today's date
 	 */
@@ -241,12 +244,37 @@ public class KanBanUIActivity extends Activity {
 		}
 	}
 	
-	private void restartSelf()
+	/**
+	 * change active project, also reload ui.
+	 * @param p
+	 */
+	private void changeActiveProject(Project p)
 	{
-		Intent intent = getIntent();
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		finish();
-		startActivity(intent);
+		LoginSession.getInstance().setActiveProject(p);
+		initTaskInfo();
+		if(optionMenu != null)
+		{
+			refreshMenuState(optionMenu);
+		}
+	}
+	
+	private void refreshMenuState(Menu menu)
+	{
+		User u = HandyKBDBHelper.getDBHelperInstance().getUserByIDandProject(
+				LoginSession.getInstance().getLoggedInUser().getUserID(), 
+				LoginSession.getInstance().getActiveProject());
+		if(u.getRole() == User.Role.PO)
+		{
+			menu.findItem(R.id.itemSelectTaskPO).setVisible(true);
+			menu.findItem(R.id.itemCreateTaskPO).setVisible(true);
+			menu.findItem(R.id.itemConfigProjectPO).setVisible(true);
+		}
+		else
+		{
+			menu.findItem(R.id.itemSelectTaskPO).setVisible(false);
+			menu.findItem(R.id.itemCreateTaskPO).setVisible(false);
+			menu.findItem(R.id.itemConfigProjectPO).setVisible(false);
+		}
 	}
 	
 

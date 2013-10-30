@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itemSelectTaskPO" android:title="@string/SELECT_TASK_PO"></item>
+    <item android:id="@+id/itemCreateTaskPO" android:title="@string/CREATE_TASK_PO"></item>
+    <item android:id="@+id/itemConfigProjectPO" android:title="@string/CONFIG_PROJECT_PO"></item>
+    
+
+</menu>
