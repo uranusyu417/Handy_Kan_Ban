@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
 	/**
 	 * The default email to populate the email field with.
 	 */
-	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
+	public static final String EXTRA_USER = "com.example.android.authenticatordemo.extra.USER";
 
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
@@ -39,11 +39,11 @@ public class LoginActivity extends Activity {
 	private UserLoginTask mAuthTask = null;
 
 	// Values for email and password at the time of the login attempt.
-	private String mEmail;
+	private String mUser;
 	private String mPassword;
 
 	// UI references.
-	private EditText mEmailView;
+	private EditText mUserView;
 	private EditText mPasswordView;
 	private View mLoginFormView;
 	private View mLoginStatusView;
@@ -56,9 +56,9 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 
 		// Set up the login form.
-		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) findViewById(R.id.email);
-		mEmailView.setText(mEmail);
+		mUser = getIntent().getStringExtra(EXTRA_USER);
+		mUserView = (EditText) findViewById(R.id.user);
+		mUserView.setText(mUser);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
@@ -105,11 +105,11 @@ public class LoginActivity extends Activity {
 		}
 
 		// Reset errors.
-		mEmailView.setError(null);
+		mUserView.setError(null);
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		mEmail = mEmailView.getText().toString();
+		mUser = mUserView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
 		boolean cancel = false;
@@ -126,7 +126,7 @@ public class LoginActivity extends Activity {
 			focusView.requestFocus();
 		} else {
 
-			redirectWindow(mEmail);
+			redirectWindow();
 		}
 	}
 	
@@ -134,20 +134,44 @@ public class LoginActivity extends Activity {
 	 * Go to KanBan Main Window
 	 */
 	
-	public void redirectWindow(String username)
+	public void redirectWindow()
 	{
-		if(username.equals("admin"))
+		if(mUser.equals("admin"))
 		{
-			startActivity(new Intent(this, AdminPage.class));
+			if(mPassword.equals("admin"))
+			{
+				showProgress(true);
+				startActivity(new Intent(this, AdminPage.class));
+			}
+			else
+			{
+				mPasswordView.setError("Incorrect Password");
+				return;
+			}
+				
 		}
 		else
 		{
-			User u = HandyKBDBHelper.getDBHelperInstance().getUserByName(username);
+			User u = HandyKBDBHelper.getDBHelperInstance().getUserByName(mUser);
 			if(u!=null)
 			{
-				LoginSession.getInstance().setLoggedInUser(u);
-				Intent intent = new Intent(this, KanBanUIActivity.class);
-				startActivity(intent);
+				if(mPassword.equals(u.getPassword()))
+				{	
+					LoginSession.getInstance().setLoggedInUser(u);
+					showProgress(true);
+					Intent intent = new Intent(this, KanBanUIActivity.class);
+					startActivity(intent);
+				}
+				else
+				{
+					mPasswordView.setError("Incorrect Password");
+					return;
+				}
+			}
+			else
+			{
+				mUserView.setError("Invalid User");
+				return;
 			}
 		}
 
@@ -212,7 +236,7 @@ public class LoginActivity extends Activity {
 
 			for (String credential : DUMMY_CREDENTIALS) {
 				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
+				if (pieces[0].equals(mUser)) {
 					// Account exists, return true if the password matches.
 					return pieces[1].equals(mPassword);
 				}

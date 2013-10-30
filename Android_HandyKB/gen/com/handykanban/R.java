@@ -28,8 +28,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f09002f;
-        public static final int action_settings=0x7f090030;
+        public static final int action_forgot_password=0x7f090033;
+        public static final int action_settings=0x7f090034;
         public static final int buttonAddProject=0x7f090010;
         public static final int buttonAddRelation=0x7f090024;
         public static final int buttonAddTask=0x7f09001e;
@@ -42,8 +42,10 @@ public final class R {
         public static final int editTextTaskDetail=0x7f090009;
         public static final int editTextTaskTitle=0x7f090007;
         public static final int editTextUserName=0x7f090011;
-        public static final int email=0x7f090003;
         public static final int linearLayoutKanBan=0x7f090025;
+        public static final int linearLayoutKanBanTasks=0x7f09002a;
+        public static final int linearLayoutMain=0x7f090030;
+        public static final int linearLayoutTaskForKBMain=0x7f09002b;
         public static final int login=0x7f090005;
         public static final int login_form=0x7f090002;
         public static final int login_status=0x7f090000;
@@ -71,12 +73,14 @@ public final class R {
         public static final int spinnerTaskProject=0x7f09001c;
         public static final int spinnerTaskStatus=0x7f09000a;
         public static final int textViewDate=0x7f090029;
-        public static final int textViewHeaderCount=0x7f09002e;
-        public static final int textViewHeaderStatus=0x7f09002d;
-        public static final int textViewTaskDate=0x7f09002c;
-        public static final int textViewTaskOwner=0x7f09002b;
-        public static final int textViewTaskTitle=0x7f09002a;
+        public static final int textViewHeaderCount=0x7f090032;
+        public static final int textViewHeaderStatus=0x7f090031;
+        public static final int textViewTaskDate=0x7f09002e;
+        public static final int textViewTaskId=0x7f09002f;
+        public static final int textViewTaskOwner=0x7f09002d;
+        public static final int textViewTaskTitle=0x7f09002c;
         public static final int toggleButtonEditNote=0x7f090028;
+        public static final int user=0x7f090003;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -110,14 +114,14 @@ public final class R {
         public static final int button_taskinfo_update=0x7f05000d;
         public static final int error_field_required=0x7f050018;
         public static final int error_incorrect_password=0x7f050017;
-        public static final int error_invalid_email=0x7f050015;
         public static final int error_invalid_password=0x7f050016;
+        public static final int error_invalid_user=0x7f050015;
         public static final int hello_world=0x7f050002;
         public static final int login_progress_signing_in=0x7f050014;
+        public static final int prompt_password=0x7f050010;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05000f;
-        public static final int prompt_password=0x7f050010;
+        public static final int prompt_user=0x7f05000f;
         public static final int title_activity_login=0x7f05000e;
         public static final int title_activity_task_detal_info=0x7f05000b;
     }
