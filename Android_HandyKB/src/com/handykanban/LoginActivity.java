@@ -140,7 +140,6 @@ public class LoginActivity extends Activity {
 		{
 			if(mPassword.equals("admin"))
 			{
-				showProgress(true);
 				startActivity(new Intent(this, AdminPage.class));
 			}
 			else
@@ -158,7 +157,6 @@ public class LoginActivity extends Activity {
 				if(mPassword.equals(u.getPassword()))
 				{	
 					LoginSession.getInstance().setLoggedInUser(u);
-					showProgress(true);
 					Intent intent = new Intent(this, KanBanUIActivity.class);
 					startActivity(intent);
 				}
