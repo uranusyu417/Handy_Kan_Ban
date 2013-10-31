@@ -109,6 +109,7 @@ public class KanBanUIActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		switch (item.getItemId())
 		{
 		case  R.id.itemConfigProjectPO:			
@@ -116,6 +117,18 @@ public class KanBanUIActivity extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+=======
+		switch(item.getItemId())
+		{
+		case R.id.itemConfigProjectPO:
+			System.out.print("configuration");
+			startActivityForResult(new Intent(getApplicationContext(), Configuration.class),1);
+			break;
+		default:
+			break;
+		}
+		return true;
+>>>>>>> configuration
 	}
 
 	/**
