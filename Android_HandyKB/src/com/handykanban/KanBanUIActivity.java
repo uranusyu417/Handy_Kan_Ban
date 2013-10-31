@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class KanBanUIActivity extends Activity {
+	private static final String LOGTAG = "KanBanUIActivity";
 	
 	private Spinner spinnerProject;
 	private EditText editTextNote;
@@ -37,6 +38,7 @@ public class KanBanUIActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(LOGTAG,"OnCreate called");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.kanban_window_layout);
 		
@@ -52,9 +54,17 @@ public class KanBanUIActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				Log.d(LOGTAG,"project spinner selected");
 				Spinner s = (Spinner)arg0;
 				Project p = (Project)s.getSelectedItem();
-				changeActiveProject(p);
+				if (p != null) {
+					changeActiveProject(p);
+					initTaskInfo();					
+				}
+				else
+				{
+					Log.d(LOGTAG,"selected project is null");
+				}
 			}
 
 			@Override
@@ -87,6 +97,7 @@ public class KanBanUIActivity extends Activity {
 
 	@Override
 	protected void onResume() {
+		Log.d(LOGTAG,"onResume called");
 		super.onResume();
 		
 		// update note editable state according to toggle button
@@ -100,25 +111,27 @@ public class KanBanUIActivity extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.d(LOGTAG,"onCreateOptionsMenu called");
 		getMenuInflater().inflate(R.menu.menu_kanban_for_po, menu);
 		optionMenu = menu;
-		refreshMenuState(menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		switch(item.getItemId())
+        //TODO jump to different page based on menu item
+		switch (item.getItemId())
 		{
 		case R.id.itemConfigProjectPO:
 			startActivityForResult(new Intent(getApplicationContext(), Configuration.class),1);
+			break;
+		case R.id.itemSelectTaskPO:
+			startActivity(new Intent(this, PickupToDoTask.class));
 			break;
 		default:
 			break;
 		}
 		return true;
-
 	}
 
 	/**
@@ -207,6 +220,7 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void initSpinnerProject()
 	{
+		Log.d(LOGTAG,"initSpinnerProject called");
 		//load projects info into spinner
 		User loggedinuser = LoginSession.getInstance().getLoggedInUser();
 		ArrayList<Project> prjs = HandyKBDBHelper.getDBHelperInstance().getProjectsByUserID(loggedinuser.getUserID());
@@ -224,6 +238,7 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void initTaskInfo()
 	{
+		Log.d(LOGTAG,"initTaskInfo called");
 		//clear UI control first
 		linearLayoutKanBanTasks.removeAllViews();
 		
@@ -260,8 +275,8 @@ public class KanBanUIActivity extends Activity {
 	 */
 	private void changeActiveProject(Project p)
 	{
+		Log.d(LOGTAG,"changeActiveProject called");
 		LoginSession.getInstance().setActiveProject(p);
-		initTaskInfo();
 		if(optionMenu != null)
 		{
 			refreshMenuState(optionMenu);
@@ -270,11 +285,13 @@ public class KanBanUIActivity extends Activity {
 	
 	private void refreshMenuState(Menu menu)
 	{
+		Log.d(LOGTAG,"refreshMenuState called");
 		User u = HandyKBDBHelper.getDBHelperInstance().getUserByIDandProject(
 				LoginSession.getInstance().getLoggedInUser().getUserID(), 
 				LoginSession.getInstance().getActiveProject());
 		if(u.getRole() == User.Role.PO)
 		{
+			Log.d(LOGTAG,"User role is PO");
 			menu.findItem(R.id.itemSelectTaskPO).setVisible(true);
 			menu.findItem(R.id.itemCreateTaskPO).setVisible(true);
 			menu.findItem(R.id.itemConfigProjectPO).setVisible(true);
@@ -287,6 +304,4 @@ public class KanBanUIActivity extends Activity {
 		}
 	}
 	
-
-	//TODO implement option menu depending on different loggedin user role
 }
