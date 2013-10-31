@@ -1,6 +1,5 @@
 package com.handykanban;
 
-
 public class Task {
 	private int taskID;
 	private String title;
@@ -19,7 +18,52 @@ public class Task {
 	{
 		
 	}
-
+	/***
+	* Copy constructor
+	*/
+	public Task(Task t)
+	{
+		taskID  = t.taskID;
+		title   = t.title;
+		detail  = t.detail;
+		status  = t.status;
+		priority= t.priority;
+		startDate   = t.startDate;
+		completeDate= t.completeDate;
+		ownerID     = t.ownerID;
+		projectID   = t.projectID;
+	}
+	
+	// check whether two tasks are equal	   
+	public boolean equals(Task o) {
+	        // Return true if the objects are identical.
+	        // (This is just an optimization, not required for correctness.)     
+	        if (this == o) {       
+	           return true;     
+	        }     
+	        
+	        // Return false if the other object has the wrong type.     
+	        // This type may be an interface depending on the interface's specification.     
+	        if (!(o instanceof Task)) 
+	        {       
+	           return false;     
+	        }     
+	        // Cast to the appropriate type.     
+	        // This will succeed because of the instanceof, and lets us access private fields.     
+	        Task t = (Task) o;     
+	        // Check each field. Primitive fields, reference fields, and nullable reference     
+	        // fields are all treated differently.     
+	        return ((taskID == t.taskID) &&       
+	        		(title   == t.title) &&
+					(detail  == t.detail) &&
+					(status  == t.status) &&
+					(priority== t.priority) &&
+					(startDate   == t.startDate) &&
+					(completeDate== t.completeDate) &&
+					(ownerID     == t.ownerID) &&
+					(projectID   == t.projectID));  
+	}
+	
 	public int getTaskID() {
 		return taskID;
 	}
@@ -173,4 +217,5 @@ public class Task {
 			}
 		}
 	}
+	
 }
