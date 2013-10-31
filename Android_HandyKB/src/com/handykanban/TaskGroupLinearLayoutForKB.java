@@ -58,6 +58,10 @@ public class TaskGroupLinearLayoutForKB extends LinearLayout {
 		for(int i=0;i<_taskGroup.size();i++)
 		{
 			main.addView(new TaskLinearLayoutForKanBan(context, _taskGroup.get(i)));
+			TextView space = new TextView(context);
+			space.setText("");
+			space.setHeight(10);
+			main.addView(space);
 		}
 	}
 

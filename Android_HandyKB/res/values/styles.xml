@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -22,6 +22,18 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
+    </style>
+    
+    <style name="StyleKanBanTaskItemP1">
+        <item name="android:background">#FF0000</item>
+    </style>
+    
+    <style name="StyleKanBanTaskItemP2">
+        <item name="android:background">#FFFF00</item>
+    </style>
+    
+    <style name="StyleKanBanTaskItemP3">
+        <item name="android:background">#00FF00</item>
     </style>
 
 </resources>

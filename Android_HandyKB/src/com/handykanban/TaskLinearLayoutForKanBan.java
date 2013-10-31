@@ -1,14 +1,18 @@
 package com.handykanban;
 
 
+import com.handykanban.Task.Priority;
+
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class TaskLinearLayoutForKanBan extends LinearLayout {
+public class TaskLinearLayoutForKanBan extends LinearLayout implements View.OnClickListener {
 	Task task;
 	
 	TextView TaskTitle;
@@ -19,6 +23,7 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 	 * otherwise, do not show date */
 	TextView TaskDate;
 	TextView TaskId;
+	LinearLayout linearLayoutTaskForKBMain;
 	
 	public TaskLinearLayoutForKanBan(Context context, Task _task)
 	{
@@ -45,6 +50,9 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 		this.TaskOwner = (TextView)findViewById(R.id.textViewTaskOwner);
 		this.TaskDate = (TextView)findViewById(R.id.textViewTaskDate);
 		this.TaskId = (TextView)findViewById(R.id.textViewTaskId);
+		this.linearLayoutTaskForKBMain = (LinearLayout)findViewById(R.id.linearLayoutTaskForKBMain);
+		
+		linearLayoutTaskForKBMain.setOnClickListener(this);
 		
 		//fill with data
 		TaskId.setText(String.valueOf(task.getTaskID()));
@@ -72,8 +80,28 @@ public class TaskLinearLayoutForKanBan extends LinearLayout {
 		{
 			//do nothing
 		}
+		
+		if(_task.getPriority() == Priority.P1)
+		{
+			linearLayoutTaskForKBMain.setBackgroundColor(Color.RED);
+		}
+		else if(_task.getPriority() == Priority.P2)
+		{
+			linearLayoutTaskForKBMain.setBackgroundColor(Color.YELLOW);
+		}
+		else if(_task.getPriority() == Priority.P3)
+		{
+			linearLayoutTaskForKBMain.setBackgroundColor(Color.GREEN);
+		}
+		else
+		{
+			//do nothing
+		}
 	}
-	
-	//TODO implement item click 
 
+	@Override
+	public void onClick(View v) {
+		//TODO implement item click 
+		
+	}
 }

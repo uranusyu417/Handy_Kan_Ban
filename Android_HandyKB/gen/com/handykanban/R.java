@@ -29,7 +29,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_forgot_password=0x7f090033;
-        public static final int action_settings=0x7f090034;
+        public static final int action_settings=0x7f090037;
         public static final int buttonAddProject=0x7f090010;
         public static final int buttonAddRelation=0x7f090024;
         public static final int buttonAddTask=0x7f09001e;
@@ -42,6 +42,9 @@ public final class R {
         public static final int editTextTaskDetail=0x7f090009;
         public static final int editTextTaskTitle=0x7f090007;
         public static final int editTextUserName=0x7f090011;
+        public static final int itemConfigProjectPO=0x7f090036;
+        public static final int itemCreateTaskPO=0x7f090035;
+        public static final int itemSelectTaskPO=0x7f090034;
         public static final int linearLayoutKanBan=0x7f090025;
         public static final int linearLayoutKanBanTasks=0x7f09002a;
         public static final int linearLayoutMain=0x7f090030;
@@ -93,36 +96,40 @@ public final class R {
     }
     public static final class menu {
         public static final int login=0x7f080000;
-        public static final int startup=0x7f080001;
-        public static final int task_detal_info=0x7f080002;
+        public static final int menu_kanban_for_po=0x7f080001;
+        public static final int startup=0x7f080002;
+        public static final int task_detal_info=0x7f080003;
     }
     public static final class string {
+        public static final int CONFIG_PROJECT_PO=0x7f050010;
+        public static final int CREATE_TASK_PO=0x7f05000f;
         public static final int Complete_Date=0x7f050008;
         public static final int DB_NAME=0x7f050006;
         public static final int DONE=0x7f050005;
         public static final int EDITABLE=0x7f05000a;
         public static final int NOTE=0x7f050009;
         public static final int ONGOING=0x7f050004;
+        public static final int SELECT_TASK_PO=0x7f05000e;
         public static final int Start_Date=0x7f050007;
         public static final int TODO=0x7f050003;
-        public static final int action_forgot_password=0x7f050013;
+        public static final int action_forgot_password=0x7f050016;
         public static final int action_settings=0x7f050001;
-        public static final int action_sign_in_register=0x7f050011;
-        public static final int action_sign_in_short=0x7f050012;
+        public static final int action_sign_in_register=0x7f050014;
+        public static final int action_sign_in_short=0x7f050015;
         public static final int app_name=0x7f050000;
         public static final int button_taskinfo_assigntome=0x7f05000c;
         public static final int button_taskinfo_update=0x7f05000d;
-        public static final int error_field_required=0x7f050018;
-        public static final int error_incorrect_password=0x7f050017;
-        public static final int error_invalid_password=0x7f050016;
-        public static final int error_invalid_user=0x7f050015;
+        public static final int error_field_required=0x7f05001b;
+        public static final int error_incorrect_password=0x7f05001a;
+        public static final int error_invalid_password=0x7f050019;
+        public static final int error_invalid_user=0x7f050018;
         public static final int hello_world=0x7f050002;
-        public static final int login_progress_signing_in=0x7f050014;
-        public static final int prompt_password=0x7f050010;
+        public static final int login_progress_signing_in=0x7f050017;
+        public static final int prompt_password=0x7f050013;
         /**  Strings related to login 
          */
-        public static final int prompt_user=0x7f05000f;
-        public static final int title_activity_login=0x7f05000e;
+        public static final int prompt_user=0x7f050012;
+        public static final int title_activity_login=0x7f050011;
         public static final int title_activity_task_detal_info=0x7f05000b;
     }
     public static final class style {
@@ -155,5 +162,8 @@ public final class R {
          */
         public static final int AppTheme=0x7f070001;
         public static final int LoginFormContainer=0x7f070002;
+        public static final int StyleKanBanTaskItemP1=0x7f070003;
+        public static final int StyleKanBanTaskItemP2=0x7f070004;
+        public static final int StyleKanBanTaskItemP3=0x7f070005;
     }
 }
