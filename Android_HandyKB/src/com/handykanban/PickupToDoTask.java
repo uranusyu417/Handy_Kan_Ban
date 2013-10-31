@@ -1,30 +1,22 @@
 package com.handykanban;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
-import com.handykanban.BacklogAdapter.ViewHolder;
-import com.handykanban.Task.Priority;
-import com.handykanban.Task.Status;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.handykanban.BacklogAdapter.ViewHolder;
+import com.handykanban.Task.Status;
 
 
 public class PickupToDoTask extends Activity {

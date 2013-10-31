@@ -6,22 +6,22 @@ package com.handykanban;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.handykanban.Task.Priority;
-import com.handykanban.Task.Status;
-
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.handykanban.Task.Priority;
+import com.handykanban.Task.Status;
 
 /**
  * @author esijuma
@@ -126,8 +126,13 @@ public class BacklogAdapter extends BaseAdapter {
            
            @Override
            public void onClick(View v) {
-              Log.v("xyz", "Click update button:" + position);                               
-           
+              Log.v("xyz", "Click update button:" + position);  
+              Intent intent = new Intent();
+              Bundle b=new Bundle();
+              b.putInt("TASK_MODE", TaskDetalInfoActivity.EDIT_MODE);
+              b.putInt("TASK_ID", list.get(position).getTaskID());
+              intent.setClass(mContext, TaskDetalInfoActivity.class);
+              mContext.startActivity(intent);    
            }
        });       
        return convertView;
