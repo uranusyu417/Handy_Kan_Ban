@@ -70,7 +70,9 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 				tempTaskId = b.getInt("TASK_ID");
 				tempTask = HandyKBDBHelper.getDBHelperInstance().getTaskById(
 						tempTaskId);
-
+				tempTaskOwner = HandyKBDBHelper.getDBHelperInstance().getUserByTask(
+						tempTask);
+				
 				tempTaskOldStatus = tempTask.getStatus();
 
 				enterEditMode();
@@ -150,9 +152,6 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 				.setSelection(Status.StatusToInt(tempTask.getStatus()));
 
 		// prepare task Assingee
-		tempTaskOwner = HandyKBDBHelper.getDBHelperInstance().getUserByTask(
-				tempTask);
-
 		ArrayAdapter<User> userAdp = new ArrayAdapter<User>(this,
 				android.R.layout.simple_spinner_item, HandyKBDBHelper
 						.getDBHelperInstance().getUsersByProject(
