@@ -45,6 +45,7 @@ public class PickupToDoTask extends Activity {
 		updateSourceList=null;
 		originalSourceList=null;
 		mAdapter=null;
+		todoTaskThreshold = LoginSession.getInstance().getActiveProject().getMaxOfToDo();
 	}
 	
 	@Override
@@ -107,17 +108,19 @@ public class PickupToDoTask extends Activity {
 			public void onClick(View arg0) {
 				//update data to database.
 				//System.out.println("Button was clicked!!");
+				HandyKBDBHelper db = HandyKBDBHelper.getDBHelperInstance() ;
 				for(int i=0; i<updateSourceList.size(); i++)
 				{
 					// data was changed, need to update to database..
-					if(!updateSourceList.get(i).equals(originalSourceList.get(i))){
+					Task t = updateSourceList.get(i);
+					if(!t.equals(originalSourceList.get(i))){
 						//write to database;						
 						Log.d("XYZ","original-"+i+"="+originalSourceList.get(i).getStatus() + 
 								" / update-"+i+"="+updateSourceList.get(i).getStatus());  
+						db.updateTaskInfo(t);
 					}
-					Log.d("Debug","original-"+i+"="+originalSourceList.get(i).getStatus() + 
-							" / update-"+i+"="+updateSourceList.get(i).getStatus()); 					
 				}
+				finish();
 			}
 		});
 	    
@@ -126,31 +129,39 @@ public class PickupToDoTask extends Activity {
 	    bt_addNewTask.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				//update data to database.
+				//creat new task data to database.
 				Log.d("XYZ","The add new task buuton was clicked!");
-				
+				for(int i=0; i<updateSourceList.size(); i++)
+				{
+					Log.d("Debug","original-"+i+"="+originalSourceList.get(i).getStatus() + 
+							" / update-"+i+"="+updateSourceList.get(i).getStatus()); 					
+				}		
 			}
-		});
-	    
-	}
-	    
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.pickup_to_do_task, menu);
-		return true;
-	}
+		});	    
+	}	    
 
 	private boolean readDataFromDB()
 	{
+		
+		// get tasks from DB.
+		HandyKBDBHelper db = HandyKBDBHelper.getDBHelperInstance() ;
+		if(db == null){
+			Toast.makeText(this, (CharSequence)("Fail to access the database!"), Toast.LENGTH_LONG).show();
+			return false;
+		}
+		
 		if(updateSourceList == null){
 		   updateSourceList = new ArrayList<Task>();
 		}
 		else{
 		   updateSourceList.clear();
-		}
+		}		
+		updateSourceList.addAll(db.getTasksByProjectIDAndStatus(LoginSession.getInstance().getActiveProject().getProjectID(), Task.Status.TODO));
+		updateSourceList.addAll(db.getTasksByProjectIDAndStatus(LoginSession.getInstance().getActiveProject().getProjectID(), Task.Status.BACKLOG));
 		
 		//add debug data here.
+		/*
+		  
 	    Task t1 = new Task();
 	    t1.setTitle("Task1");
 	    t1.setDetail("This is the first task");
@@ -221,10 +232,12 @@ public class PickupToDoTask extends Activity {
 	    t9.setPriority(Priority.P3);
 	    t9.setTaskID(1);
 	    t9.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t9);	    
-	    //end
-	   	    
+	    updateSourceList.add(t9);	
+	    
 	    todoTaskThreshold = 4;
+	    */
+	    //end	   	    
+	    
 	    
 	    if(originalSourceList==null){
 	       originalSourceList = new ArrayList<Task>();

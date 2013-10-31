@@ -6,6 +6,7 @@ package com.handykanban;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.handykanban.Task.Priority;
 import com.handykanban.Task.Status;
 
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +107,18 @@ public class BacklogAdapter extends BaseAdapter {
        holder.tv_title.setText(list.get(position).getTitle());
        // set the task priority
        holder.tv_priority.setText(list.get(position).getPriority().toString());
+       if(list.get(position).getPriority() == Priority.P1)
+       {
+    	   holder.tv_priority.setBackgroundColor(Color.RED);
+       }
+       else if(list.get(position).getPriority() == Priority.P2)
+       {
+    	   holder.tv_priority.setBackgroundColor(Color.YELLOW);
+       }
+       else if(list.get(position).getPriority() == Priority.P3)
+       {
+    	   holder.tv_priority.setBackgroundColor(Color.GREEN);
+       }       
        // set checkbox according to value in isSelected
        holder.cb.setChecked(getIsSelected().get(position).equals(true));
        
