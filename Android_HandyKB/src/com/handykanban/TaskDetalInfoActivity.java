@@ -212,6 +212,8 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 					.getSelectedItemPosition()));
 
 			newTask.setOwnerID(tempUser.getUserID());
+			
+			newTask.setProjectID(LoginSession.getInstance().getActiveProject().getProjectID());
 
 			newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
 					newTask);
