@@ -124,8 +124,9 @@ public class PickupToDoTask extends Activity {
 				//creat new task data to database.
 				Log.d("XYZ","The add new task buuton was clicked!");
                 Intent intent = new Intent();
-                Bundle b=new Bundle();
+                Bundle b = new Bundle();
                 b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
+                intent.putExtras(b);
                 intent.setClass(arg0.getContext(), TaskDetalInfoActivity.class);
                 intent.putExtras(b);
                 startActivity(intent);               
