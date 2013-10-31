@@ -88,13 +88,13 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 	private void restartSelf(int newTaskId)
 
 	{
-
 		Intent intent = getIntent();
 		Bundle b = intent.getExtras();
 
 		b.putInt("TASK_MODE", EDIT_MODE);
 		b.putInt("TASK_ID", newTaskId);
-
+		
+		intent.putExtras(b);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
 		finish();
@@ -217,6 +217,8 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 					newTask);
 
 			restartSelf(newTaskId);
+			
+			break;
 
 		}
 		case EDIT_MODE: {
@@ -270,6 +272,8 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 			tempTask.setOwnerID(tempUser.getUserID());
 
 			HandyKBDBHelper.getDBHelperInstance().updateTaskInfo(tempTask);
+			
+			break;
 		}
 		default:
 			break;

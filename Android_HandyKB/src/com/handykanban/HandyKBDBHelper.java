@@ -377,6 +377,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 	}
 
 	public int addNewTask(Task t) {
+		long rowid;
 		ContentValues cv = new ContentValues();
 		cv.put("Title", t.getTitle());
 		cv.put("Detail", t.getDetail());
@@ -386,11 +387,11 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		cv.put("OwnerID", t.getOwnerID());
 		cv.put("Status", Task.Status.StatusToInt(t.getStatus()));
 		cv.put("ProjectID", t.getProjectID());
-		if (db.insert(TaskTableName, null, cv) > -1) {
+		
+		if ((rowid =db.insert(TaskTableName, null, cv)) > -1) {
 			Cursor cur = null;
 			try {
-				cur = db.rawQuery(String.format(Locale.US,
-						"SELECT MAX(rowid) FROM %s", TaskTableName), null);
+				cur = db.query(TaskTableName, null, "rowid="+rowid, null, null, null, null);
 
 				if (cur.moveToNext()) {
 					return (cur.getInt(cur.getColumnIndex("TaskID")));
