@@ -29,7 +29,7 @@ local.properties
 .buildpath
 
 #ignore android R.java
-Android_HandyKB/gen/com/handykanban/*.*
+Android_HandyKB/gen/com/handykanban/*.java
 
 #################
 ## Visual Studio

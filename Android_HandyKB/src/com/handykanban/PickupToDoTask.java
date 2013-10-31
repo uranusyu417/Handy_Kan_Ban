@@ -131,11 +131,11 @@ public class PickupToDoTask extends Activity {
 			public void onClick(View arg0) {
 				//creat new task data to database.
 				Log.d("XYZ","The add new task buuton was clicked!");
-				for(int i=0; i<updateSourceList.size(); i++)
-				{
-					Log.d("Debug","original-"+i+"="+originalSourceList.get(i).getStatus() + 
-							" / update-"+i+"="+updateSourceList.get(i).getStatus()); 					
-				}		
+                Intent intent = new Intent();
+                Bundle b=new Bundle();
+                b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
+                intent.setClass(arg0.getContext(), TaskDetalInfoActivity.class);
+                startActivity(intent);               
 			}
 		});	    
 	}	    
