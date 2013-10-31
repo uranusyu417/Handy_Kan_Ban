@@ -28,7 +28,7 @@
         <item>DONE</item>
     </string-array>
 
-    <string name="SELECT_TASK_PO">Select Tasks from Backlog to TODO list</string>
+    <string name="SELECT_TASK_PO">Manage tasks in backlog/todo list</string>
     <string name="CREATE_TASK_PO">Create New Task</string>
     <string name="CONFIG_PROJECT_PO">Configure Project Setting</string>
     <string name="title_activity_pickup_to_do_task">PickupToDoTask</string>

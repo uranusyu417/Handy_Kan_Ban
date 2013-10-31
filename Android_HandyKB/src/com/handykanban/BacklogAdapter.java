@@ -109,14 +109,17 @@ public class BacklogAdapter extends BaseAdapter {
        holder.tv_priority.setText(list.get(position).getPriority().toString());
        if(list.get(position).getPriority() == Priority.P1)
        {
+    	   holder.tv_title.setBackgroundColor(Color.RED);
     	   holder.tv_priority.setBackgroundColor(Color.RED);
        }
        else if(list.get(position).getPriority() == Priority.P2)
        {
+    	   holder.tv_title.setBackgroundColor(Color.YELLOW);
     	   holder.tv_priority.setBackgroundColor(Color.YELLOW);
        }
        else if(list.get(position).getPriority() == Priority.P3)
        {
+    	   holder.tv_title.setBackgroundColor(Color.GREEN);
     	   holder.tv_priority.setBackgroundColor(Color.GREEN);
        }       
        // set checkbox according to value in isSelected
@@ -131,9 +134,9 @@ public class BacklogAdapter extends BaseAdapter {
               Bundle b=new Bundle();
               b.putInt("TASK_MODE", TaskDetalInfoActivity.EDIT_MODE);
               b.putInt("TASK_ID", list.get(position).getTaskID());
-              intent.setClass(v.getContext(), TaskDetalInfoActivity.class);
+              intent.setClass(mContext, TaskDetalInfoActivity.class);
               intent.putExtras(b);
-              v.getContext().startActivity(intent);    
+              mContext.startActivity(intent);    
            }
        });       
        return convertView;

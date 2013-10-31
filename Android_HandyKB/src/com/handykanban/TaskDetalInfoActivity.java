@@ -203,7 +203,7 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		case CREATE_MODE: {
 			Task newTask = new Task();
 			User tempUser = (User) spinnerTaskAssingee.getSelectedItem();
-			int newTaskId;
+			//int newTaskId;
 
 			newTask.setTitle(editTextTaskTitle.getText().toString());
 			newTask.setDetail(editTextTaskDetail.getText().toString());
@@ -216,10 +216,11 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 			newTask.setProjectID(LoginSession.getInstance().getActiveProject().getProjectID());
 
-			newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
-					newTask);
+			//newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
+			HandyKBDBHelper.getDBHelperInstance().addNewTask(newTask);
 
-			restartSelf(newTaskId);
+			//restartSelf(newTaskId); //remove by REMOND
+			finish();
 			return;
 		}
 		case EDIT_MODE: {
@@ -273,6 +274,8 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 			tempTask.setOwnerID(tempUser.getUserID());
 
 			HandyKBDBHelper.getDBHelperInstance().updateTaskInfo(tempTask);
+			
+			finish(); 
 			
 			break;
 		}

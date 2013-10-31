@@ -389,6 +389,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		cv.put("ProjectID", t.getProjectID());
 
 		if ((rowid =db.insert(TaskTableName, null, cv)) > -1) {
+			/* Remove by REMOND
 			Cursor cur = null;
 			try {
 				cur = db.query(TaskTableName, null, "rowid="+rowid, null, null, null, null);
@@ -401,6 +402,8 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 					cur.close();
 				}
 			}
+			*/
+			return 0;
 		}
 
 		return -1;

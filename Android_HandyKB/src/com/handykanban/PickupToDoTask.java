@@ -55,10 +55,8 @@ public class PickupToDoTask extends Activity {
 	    	return;
 	    }
 	    
-	    //set adapter
-	    if(mAdapter == null){
-	        mAdapter = new BacklogAdapter(updateSourceList, this);
-	    }
+        mAdapter = new BacklogAdapter(updateSourceList, this);
+
 	    lvwTodo.setAdapter(mAdapter);	
 	    tv_show.setText("current/max: " + mAdapter.todoTaskCount() + "/" + todoTaskThreshold);
 	   
@@ -107,8 +105,8 @@ public class PickupToDoTask extends Activity {
 					Task t = updateSourceList.get(i);
 					if(!t.equals(originalSourceList.get(i))){
 						//write to database;						
-						Log.d("XYZ","original-"+i+"="+originalSourceList.get(i).getStatus() + 
-								" / update-"+i+"="+updateSourceList.get(i).getStatus());  
+						//Log.d("XYZ","original-"+i+"="+originalSourceList.get(i).getStatus() + 
+						//		" / update-"+i+"="+updateSourceList.get(i).getStatus());  
 						db.updateTaskInfo(t);
 					}
 				}
@@ -120,16 +118,14 @@ public class PickupToDoTask extends Activity {
 	    bt_addNewTask = (Button) findViewById(R.id.button_newTask);				
 	    bt_addNewTask.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View arg0) {
-				//creat new task data to database.
-				Log.d("XYZ","The add new task buuton was clicked!");
-                Intent intent = new Intent();
-                Bundle b = new Bundle();
+			public void onClick(View v) {
+				//creat new task data to database.		
+
+    			Intent intent = new Intent(v.getContext(), TaskDetalInfoActivity.class);
+                Bundle b=new Bundle();
                 b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
                 intent.putExtras(b);
-                intent.setClass(arg0.getContext(), TaskDetalInfoActivity.class);
-                intent.putExtras(b);
-                startActivity(intent);               
+                v.getContext().startActivity(intent);
 			}
 		});	    
 	}	    
@@ -152,86 +148,6 @@ public class PickupToDoTask extends Activity {
 		}		
 		updateSourceList.addAll(db.getTasksByProjectIDAndStatus(LoginSession.getInstance().getActiveProject().getProjectID(), Task.Status.TODO));
 		updateSourceList.addAll(db.getTasksByProjectIDAndStatus(LoginSession.getInstance().getActiveProject().getProjectID(), Task.Status.BACKLOG));
-		
-		//add debug data here.
-		/*
-		  
-	    Task t1 = new Task();
-	    t1.setTitle("Task1");
-	    t1.setDetail("This is the first task");
-	    t1.setPriority(Priority.P1);
-	    t1.setTaskID(1);
-	    t1.setStatus(Status.TODO);
-	    updateSourceList.add(t1);
-	    
-	    Task t2 = new Task();
-	    t2.setTitle("Task2");
-	    t2.setDetail("This is the 2nd task");
-	    t2.setPriority(Priority.P2);
-	    t2.setTaskID(1);
-	    t2.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t2);
-	    
-	    Task t3 = new Task();
-	    t3.setTitle("Task3");
-	    t3.setDetail("This is the 3 task");
-	    t3.setPriority(Priority.P3);
-	    t3.setTaskID(1);
-	    t3.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t3);
-	    
-	    Task t4 = new Task();
-	    t4.setTitle("Task4");
-	    t4.setDetail("This is the 4 task");
-	    t4.setPriority(Priority.P1);
-	    t4.setTaskID(1);
-	    t4.setStatus(Status.TODO);
-	    updateSourceList.add(t4);
-	    
-	    Task t5 = new Task();
-	    t5.setTitle("Task5");
-	    t5.setDetail("This is the 5 task");
-	    t5.setPriority(Priority.P2);
-	    t5.setTaskID(1);
-	    t5.setStatus(Status.TODO);
-	    updateSourceList.add(t5);
-	    
-	    Task t6 = new Task();
-	    t6.setTitle("Task6");
-	    t6.setDetail("This is the 6 task");
-	    t6.setPriority(Priority.P3);
-	    t6.setTaskID(1);
-	    t6.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t6);	  
-	    
-	    Task t7 = new Task();
-	    t7.setTitle("Task7");
-	    t7.setDetail("This is the 7 task");
-	    t7.setPriority(Priority.P1);
-	    t7.setTaskID(1);
-	    t7.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t7);
-	    
-	    Task t8 = new Task();
-	    t8.setTitle("Task8");
-	    t8.setDetail("This is the 8 task");
-	    t8.setPriority(Priority.P2);
-	    t8.setTaskID(1);
-	    t8.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t8);
-	    
-	    Task t9 = new Task();
-	    t9.setTitle("Task9");
-	    t9.setDetail("This is the 9 task");
-	    t9.setPriority(Priority.P3);
-	    t9.setTaskID(1);
-	    t9.setStatus(Status.BACKLOG);
-	    updateSourceList.add(t9);	
-	    
-	    todoTaskThreshold = 4;
-	    */
-	    //end	   	    
-	    
 	    
 	    if(originalSourceList==null){
 	       originalSourceList = new ArrayList<Task>();
