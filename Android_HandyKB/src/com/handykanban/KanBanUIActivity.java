@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.KeyListener;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -108,6 +109,12 @@ public class KanBanUIActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
+		switch (item.getItemId())
+		{
+		case  R.id.itemSelectTaskPO:			
+			startActivityForResult(new Intent(getApplicationContext(), PickupToDoTask.class),1);			
+			break;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
