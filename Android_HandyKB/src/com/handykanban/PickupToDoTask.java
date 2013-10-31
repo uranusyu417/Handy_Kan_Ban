@@ -127,6 +127,7 @@ public class PickupToDoTask extends Activity {
                 Bundle b=new Bundle();
                 b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
                 intent.setClass(arg0.getContext(), TaskDetalInfoActivity.class);
+                intent.putExtras(b);
                 startActivity(intent);               
 			}
 		});	    

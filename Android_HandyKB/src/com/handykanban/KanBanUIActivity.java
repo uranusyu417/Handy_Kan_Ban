@@ -132,6 +132,7 @@ public class KanBanUIActivity extends Activity {
 			Intent intent = new Intent(this, TaskDetalInfoActivity.class);
             Bundle b=new Bundle();
             b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
+            intent.putExtras(b);
             startActivity(intent);
             break;
 		default:
