@@ -28,11 +28,8 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int DONE=0x7f090005;
         public static final int Item_TaskPrio=0x7f09003a;
         public static final int Item_TaskTitle=0x7f090039;
-        public static final int ONGOING=0x7f090004;
-        public static final int TODO=0x7f090003;
         public static final int action_forgot_password=0x7f090046;
         public static final int action_settings=0x7f090045;
         public static final int buttonAddProject=0x7f09001e;
@@ -45,7 +42,10 @@ public final class R {
         public static final int button_newTask=0x7f090014;
         public static final int configuration_button_cancel=0x7f090008;
         public static final int configuration_button_ok=0x7f090007;
+        public static final int configuration_done=0x7f090005;
+        public static final int configuration_ongoing=0x7f090004;
         public static final int configuration_project_name=0x7f090006;
+        public static final int configuration_todo=0x7f090003;
         public static final int editTextNote=0x7f090035;
         public static final int editTextProjectMax=0x7f09001d;
         public static final int editTextProjectName=0x7f09001c;
