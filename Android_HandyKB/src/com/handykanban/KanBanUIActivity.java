@@ -128,6 +128,12 @@ public class KanBanUIActivity extends Activity {
 		case R.id.itemSelectTaskPO:
 			startActivity(new Intent(this, PickupToDoTask.class));
 			break;
+		case R.id.itemCreateTaskPO:
+			Intent intent = new Intent(this, TaskDetalInfoActivity.class);
+            Bundle b=new Bundle();
+            b.putInt("TASK_MODE", TaskDetalInfoActivity.CREATE_MODE);
+            startActivity(intent);
+            break;
 		default:
 			break;
 		}

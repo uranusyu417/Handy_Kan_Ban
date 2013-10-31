@@ -57,7 +57,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
+		// TODO handle DB upgrade
 
 	}
 
@@ -144,6 +144,21 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 
 		return _user;
 	}
+
+	
+	public User.Role getUserRoleByProject(User u, Project p)
+	{
+		User.Role role = User.Role.UNKNOWN;
+		Cursor cur = db.query(UserRoleTableName, null, "UserID="+u.getUserID()+" AND ProjectID="+p.getProjectID(), 
+	               null, null, null, null);
+		if(cur.moveToNext())
+		{
+			role = User.Role.intToRole(cur.getInt(cur.getColumnIndex("Role")));
+		}
+		cur.close();
+		return role;
+	}
+	
 
 	/**
 	 * get all user objects belonging to one project

@@ -4,7 +4,9 @@ package com.handykanban;
 import com.handykanban.Task.Priority;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +103,12 @@ public class TaskLinearLayoutForKanBan extends LinearLayout implements View.OnCl
 
 	@Override
 	public void onClick(View v) {
-		//TODO implement item click 
-		
+		int taskid = Integer.parseInt(TaskId.getText().toString());
+		Intent intent = new Intent(v.getContext(), TaskDetalInfoActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putInt("TASK_MODE", TaskDetalInfoActivity.EDIT_MODE);
+		bundle.putInt("TASK_ID", taskid);
+		intent.putExtras(bundle);
+		v.getContext().startActivity(intent);
 	}
 }

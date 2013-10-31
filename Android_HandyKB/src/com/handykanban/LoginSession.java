@@ -64,6 +64,6 @@ public class LoginSession {
 	
 	private void updateLoggedInUser()
 	{
-		//TODO user info need to be updated according to project change
+		LoggedInUser.setRole(HandyKBDBHelper.getDBHelperInstance().getUserRoleByProject(LoggedInUser, ActiveProject));
 	}
 }
