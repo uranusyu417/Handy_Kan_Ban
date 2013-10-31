@@ -131,8 +131,9 @@ public class BacklogAdapter extends BaseAdapter {
               Bundle b=new Bundle();
               b.putInt("TASK_MODE", TaskDetalInfoActivity.EDIT_MODE);
               b.putInt("TASK_ID", list.get(position).getTaskID());
-              intent.setClass(mContext, TaskDetalInfoActivity.class);
-              mContext.startActivity(intent);    
+              intent.setClass(v.getContext(), TaskDetalInfoActivity.class);
+              intent.putExtras(b);
+              v.getContext().startActivity(intent);    
            }
        });       
        return convertView;

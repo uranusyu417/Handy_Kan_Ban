@@ -387,7 +387,7 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		cv.put("OwnerID", t.getOwnerID());
 		cv.put("Status", Task.Status.StatusToInt(t.getStatus()));
 		cv.put("ProjectID", t.getProjectID());
-		
+
 		if ((rowid =db.insert(TaskTableName, null, cv)) > -1) {
 			Cursor cur = null;
 			try {

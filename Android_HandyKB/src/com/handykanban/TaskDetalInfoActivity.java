@@ -96,6 +96,7 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		
 		intent.putExtras(b);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		intent.putExtras(b);
 
 		finish();
 
@@ -212,16 +213,14 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 					.getSelectedItemPosition()));
 
 			newTask.setOwnerID(tempUser.getUserID());
-			
+
 			newTask.setProjectID(LoginSession.getInstance().getActiveProject().getProjectID());
 
 			newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
 					newTask);
 
 			restartSelf(newTaskId);
-			
-			break;
-
+			return;
 		}
 		case EDIT_MODE: {
 			User tempUser = (User) spinnerTaskAssingee.getSelectedItem();
