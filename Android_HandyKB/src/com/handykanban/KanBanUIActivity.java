@@ -112,7 +112,6 @@ public class KanBanUIActivity extends Activity {
 		switch(item.getItemId())
 		{
 		case R.id.itemConfigProjectPO:
-			System.out.print("configuration");
 			startActivityForResult(new Intent(getApplicationContext(), Configuration.class),1);
 			break;
 		default:

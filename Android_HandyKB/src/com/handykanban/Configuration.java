@@ -11,8 +11,8 @@ import android.widget.TextView;
 public class Configuration extends Activity {
 
 	private Project current_project;
-	private String current_project_name;
-	private TextView current_project_name_id;
+	//private String current_project_name;
+	private TextView current_project_name;
 	private TextView current_project_max_todo;
 	private TextView current_project_max_ongoing;
 	private TextView current_project_max_done;
@@ -23,17 +23,18 @@ public class Configuration extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
 	    current_project = LoginSession.getInstance().getActiveProject();
-	    current_project_name = current_project.getName();
-	   current_project_name_id = (TextView)findViewById(R.id.configuration_project_name);
+	   // current_project_name = current_project.getName();
+	   current_project_name = (TextView)findViewById(R.id.configuration_project_name);
 	   current_project_max_todo = (TextView)findViewById(R.id.configuration_todo);
 	   current_project_max_ongoing = (TextView)findViewById(R.id.configuration_ongoing);
 	   current_project_max_done = (TextView)findViewById(R.id.configuration_done);
-	   
+	   /*
 	   System.out.println(current_project.getName());
 	   System.out.println(current_project.getMaxOfToDo());
 	   System.out.println(current_project.getMaxOfOnGoing());
-	   System.out.println(current_project.getMaxOfDone());	   	   
-       current_project_name_id.setText(current_project.getName());
+	   System.out.println(current_project.getMaxOfDone());
+	   */
+       current_project_name.setText(current_project.getName());
 	    current_project_max_todo.setText(String.valueOf(current_project.getMaxOfToDo()));
 	    current_project_max_ongoing.setText(String.valueOf(current_project.getMaxOfOnGoing()));
 	    current_project_max_done.setText(String.valueOf(current_project.getMaxOfDone()));
