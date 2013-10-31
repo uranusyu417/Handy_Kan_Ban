@@ -8,6 +8,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Project Name" />
+
         <EditText
             android:id="@+id/editTextProjectName"
             android:layout_width="match_parent"
@@ -17,6 +23,12 @@
 
             <requestFocus />
         </EditText>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set max number of tasks" />
 
         <EditText
             android:id="@+id/editTextProjectMax"
@@ -38,6 +50,13 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="User Name..." />
+        
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password..." />
 
         <Button
             android:id="@+id/buttonAddUser"
@@ -45,12 +64,44 @@
             android:layout_height="wrap_content"
             android:text="AddUser" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set task title for project" />
+
         <EditText
             android:id="@+id/editTextTaskTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Task Title..." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinnerTaskProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+
+            />
+
+        <Spinner
+            android:id="@+id/spinnerTaskOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+
+            />
 
         <RadioGroup
             android:id="@+id/radioGroupTaskPriority"
@@ -109,29 +160,25 @@
                 android:text="DONE" />
         </RadioGroup>
 
-        <Spinner
-            android:id="@+id/spinnerTaskProject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spinnerTaskOwner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <Button
             android:id="@+id/buttonAddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AddTask" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set User Role in the Project" />
+
         <Spinner
-            android:id="@+id/spinnerRelationUser"
+            android:id="@+id/spinnerRelationProject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spinnerRelationProject"
+            android:id="@+id/spinnerRelationUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -155,11 +202,24 @@
 
         </RadioGroup>
 
-        <Button
-            android:id="@+id/buttonAddRelation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Relation" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/buttonAddRelation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Relation" />
+
+            <Button
+                android:id="@+id/buttonQuitAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quit" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

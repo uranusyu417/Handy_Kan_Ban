@@ -29,14 +29,25 @@ public class AdminPage extends Activity {
 			public void onClick(View arg0) {
 				EditText n = (EditText)findViewById(R.id.editTextProjectName);
 				EditText m = (EditText)findViewById(R.id.editTextProjectMax);
-				if(n.getText().toString().length()<=1)
+
+				if(n.getText().toString().length()<1)
 				{
 					//test
-					LoginSession.getInstance().setLoggedInUser(HandyKBDBHelper.getDBHelperInstance().getUserByID(1));
-					startActivity(new Intent(arg0.getContext(), KanBanUIActivity.class));
+					//LoginSession.getInstance().setLoggedInUser(HandyKBDBHelper.getDBHelperInstance().getUserByID(1));
+					//startActivity(new Intent(arg0.getContext(), KanBanUIActivity.class));
+		
+					n.setError("Please input Project Name");
+					return;
 				}
+				if(m.getText().toString().length()<1)
+				{
+					m.setError("Please input max number");
+					return;
+				}
+
 				Project p = new Project();
 				p.setName(n.getText().toString());
+
 				int max = Integer.parseInt(m.getText().toString());
 				p.setMaxOfDone(max);
 				p.setMaxOfOnGoing(max);
@@ -58,13 +69,37 @@ public class AdminPage extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				EditText n = (EditText)findViewById(R.id.editTextUserName);
+				EditText p = (EditText)findViewById(R.id.editTextPassword);
+				String username = n.getText().toString();
+				String password = p.getText().toString();
+						
 				User u = new User();
-				u.setName(n.getText().toString());
-				u.setPassword("password");
-				if(HandyKBDBHelper.getDBHelperInstance().addNewUser(u))
+				
+				if(username.length()!=0)
 				{
+					u.setName(username);					
+				}	
+				else
+			    {
+					n.setError("Invalid User Name");
+					return;
+			    }
+				
+				if(password.length()!=0)
+				{
+					u.setPassword(password);
+				}
+				else
+				{
+					p.setError("Invalid Password");
+					return;
+				}
+
+				if(HandyKBDBHelper.getDBHelperInstance().addNewUser(u))
+				{	
 					Toast.makeText(arg0.getContext(), "add user success", Toast.LENGTH_LONG).show();
 				}
+
 				restartSelf();
 			}
 			
@@ -82,6 +117,11 @@ public class AdminPage extends Activity {
 				Spinner t_prj = (Spinner)findViewById(R.id.spinnerTaskProject);
 				Spinner t_owner = (Spinner)findViewById(R.id.spinnerTaskOwner);
 				
+				if(t_title.getText().toString().length()<1)
+				{
+					t_title.setError("Please input Task Title");
+					return;
+				}
 				Task t = new Task();
 				t.setTitle(t_title.getText().toString());
 				switch(t_pri.getCheckedRadioButtonId())
@@ -146,8 +186,21 @@ public class AdminPage extends Activity {
 				{
 					Toast.makeText(arg0.getContext(), "add relation success", Toast.LENGTH_LONG).show();
 				}
+
 			}
 			
+		});
+		
+		//Quit button
+		btn = (Button)findViewById(R.id.buttonQuitAdmin);
+		btn.setOnClickListener(new OnClickListener(){
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(arg0.getContext(), LoginActivity.class));
+				
+			}
+		
 		});
 	}
 
