@@ -111,8 +111,8 @@ public class KanBanUIActivity extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId())
 		{
-		case  R.id.itemSelectTaskPO:			
-			startActivityForResult(new Intent(getApplicationContext(), PickupToDoTask.class),1);			
+		case  R.id.itemConfigProjectPO:			
+			startActivityForResult(new Intent(getApplicationContext(), Configuration.class),1);			
 			break;
 		}
 		return super.onOptionsItemSelected(item);

@@ -421,6 +421,24 @@ public class HandyKBDBHelper extends SQLiteOpenHelper {
 		}
 	}
 	
+	public boolean updateProject(Project p)
+	{
+		//String[] tempString;
+		//tempString = String[] p.getName();
+		ContentValues cv = new ContentValues();
+		cv.put("MaxOfDone", p.getMaxOfDone());
+		cv.put("MaxOfOnGoing", p.getMaxOfOnGoing());
+		cv.put("MaxOfToDo", p.getMaxOfToDo());
+		if(db.update(ProjectTableName, cv, "ProjectID="+p.getProjectID(), null)>-1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 	/**
 	 * get projects that specific user joined in
 	 * @param _userId User ID

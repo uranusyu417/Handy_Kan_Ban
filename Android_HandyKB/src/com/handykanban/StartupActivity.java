@@ -25,7 +25,7 @@ public class StartupActivity extends Activity {
 			{
 
 				startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class),1);
-
+				
 			}
 		}catch (Exception e){
 		}

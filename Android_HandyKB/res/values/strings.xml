@@ -15,21 +15,24 @@
     <string name="title_activity_task_detal_info">TaskDetalInfoActivity</string>
     <string name="button_taskinfo_assigntome">ASSIGNTOME</string>
     <string name="button_taskinfo_update">UPDATE</string>
+
     <string-array name="taskinfo_priority">
-        <item >P1</item>
-        <item >P2</item>
-        <item >P3</item>
+        <item>P1</item>
+        <item>P2</item>
+        <item>P3</item>
     </string-array>
     <string-array name="taskinfo_status">
-        <item >BACKLOG</item>
-        <item >TODO</item>
-        <item >ONGOING</item>
-        <item >DONE</item>
+        <item>BACKLOG</item>
+        <item>TODO</item>
+        <item>ONGOING</item>
+        <item>DONE</item>
     </string-array>
+
     <string name="SELECT_TASK_PO">Select Tasks from Backlog to TODO list</string>
     <string name="CREATE_TASK_PO">Create New Task</string>
     <string name="CONFIG_PROJECT_PO">Configure Project Setting</string>
     <string name="title_activity_pickup_to_do_task">PickupToDoTask</string>
     <string name="update_todo_task">Update</string>
+    <string name="title_activity_configuration">Configuration</string>
 
 </resources>
