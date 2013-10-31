@@ -104,67 +104,7 @@ public class AdminPage extends Activity {
 			}
 			
 		});
-		
-		//add task
-		btn = (Button)findViewById(R.id.buttonAddTask);
-		btn.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				EditText t_title = (EditText)findViewById(R.id.editTextTaskTitle);
-				RadioGroup t_pri = (RadioGroup)findViewById(R.id.radioGroupTaskPriority);
-				RadioGroup t_status = (RadioGroup)findViewById(R.id.radioGroupTaskStatus);
-				Spinner t_prj = (Spinner)findViewById(R.id.spinnerTaskProject);
-				Spinner t_owner = (Spinner)findViewById(R.id.spinnerTaskOwner);
 				
-				if(t_title.getText().toString().length()<1)
-				{
-					t_title.setError("Please input Task Title");
-					return;
-				}
-				Task t = new Task();
-				t.setTitle(t_title.getText().toString());
-				switch(t_pri.getCheckedRadioButtonId())
-				{
-				case R.id.radioP1:
-					t.setPriority(Task.Priority.P1);
-					break;
-				case R.id.radioP2:
-					t.setPriority(Task.Priority.P2);
-					break;
-				case R.id.radioP3:
-					t.setPriority(Task.Priority.P3);
-					break;
-					default:break;
-				}
-				switch(t_status.getCheckedRadioButtonId())
-				{
-				case R.id.radioBacklog:
-					t.setStatus(Task.Status.BACKLOG);
-					break;
-				case R.id.radioTodo:
-					t.setStatus(Task.Status.TODO);
-					break;
-				case R.id.radioOnGo:
-					t.setStatus(Task.Status.ONGOING);
-					break;
-				case R.id.radioDone:
-					t.setStatus(Task.Status.DONE);
-					break;
-					default:return;
-				}
-				User u = (User)t_owner.getSelectedItem();
-				t.setOwnerID(u.getUserID());
-				Project p = (Project)t_prj.getSelectedItem();
-				t.setProjectID(p.getProjectID());
-				if(HandyKBDBHelper.getDBHelperInstance().addNewTask(t)>0)
-				{
-					Toast.makeText(arg0.getContext(), "add task success", Toast.LENGTH_LONG).show();
-				}
-			}
-			
-		});
-		
 		//add relation
 		btn = (Button)findViewById(R.id.buttonAddRelation);
 		btn.setOnClickListener(new OnClickListener(){
@@ -212,10 +152,8 @@ public class AdminPage extends Activity {
 				android.R.layout.simple_spinner_item, HandyKBDBHelper
 						.getDBHelperInstance().getAllProjects());
 		prj_adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		Spinner t_prj = (Spinner) findViewById(R.id.spinnerTaskProject);
-		t_prj.setAdapter(prj_adp);
 		
-		t_prj = (Spinner) findViewById(R.id.spinnerRelationProject);
+		Spinner t_prj = (Spinner) findViewById(R.id.spinnerRelationProject);
 		t_prj.setAdapter(prj_adp);
 		
 		//load all user info
@@ -223,10 +161,8 @@ public class AdminPage extends Activity {
 				android.R.layout.simple_spinner_item, HandyKBDBHelper
 				.getDBHelperInstance().getAllUsers());
 		usr_adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		Spinner t_owner = (Spinner)findViewById(R.id.spinnerTaskOwner);
-		t_owner.setAdapter(usr_adp);
 		
-		t_owner = (Spinner)findViewById(R.id.spinnerRelationUser);
+		Spinner t_owner = (Spinner)findViewById(R.id.spinnerRelationUser);
 		t_owner.setAdapter(usr_adp);
 	}
 	
