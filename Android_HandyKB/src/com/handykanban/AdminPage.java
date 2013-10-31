@@ -117,7 +117,7 @@ public class AdminPage extends Activity {
 				t.setOwnerID(u.getUserID());
 				Project p = (Project)t_prj.getSelectedItem();
 				t.setProjectID(p.getProjectID());
-				if(HandyKBDBHelper.getDBHelperInstance().addNewTask(t))
+				if(HandyKBDBHelper.getDBHelperInstance().addNewTask(t)>0)
 				{
 					Toast.makeText(arg0.getContext(), "add task success", Toast.LENGTH_LONG).show();
 				}

@@ -34,5 +34,8 @@
     <string name="title_activity_pickup_to_do_task">PickupToDoTask</string>
     <string name="update_todo_task">Update</string>
     <string name="title_activity_configuration">Configuration</string>
+    <string name="taskinfo_status_ongoing">Task Status Should Be Set To ONGOING</string>
+    <string name="taskinfo_status_done">Task Status Should Be Set To DONE</string>
+    <string name="task_assignme_reject">Task Status Not ONGOING OR TODO</string>
 
 </resources>

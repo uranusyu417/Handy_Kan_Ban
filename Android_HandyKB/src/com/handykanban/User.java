@@ -66,6 +66,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Boolean isPoRole(){
+		return(role.toString().equals("PO"));
+	}
+	
+	public Boolean isDesignerRole(){
+		return(role.toString().equals("Designer"));
+	}
 
 	public enum Role
 	{
