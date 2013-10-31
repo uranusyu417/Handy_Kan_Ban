@@ -232,13 +232,13 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 			if (tempTaskOldStatus.toString()
 					.equals(getResources().getStringArray(
-							R.array.taskinfo_priority)[1])) {
+							R.array.taskinfo_status)[1])) {
 				// if task status is to do, we can only change it to ONGOING
-				if (!tempTask
-						.getStatus()
+				if (!Status.intToStatus(spinnerTaskStatus
+						.getSelectedItemPosition())
 						.toString()
 						.equals(getResources().getStringArray(
-								R.array.taskinfo_priority)[2])) {
+								R.array.taskinfo_status)[2])) {
 					Toast.makeText(this, R.string.taskinfo_status_ongoing,
 							Toast.LENGTH_LONG).show();
 					return;
@@ -248,13 +248,13 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 				tempTask.setStartDate(dateStr);
 			} else if (tempTaskOldStatus.toString()
 					.equals(getResources().getStringArray(
-							R.array.taskinfo_priority)[2])) {
+							R.array.taskinfo_status)[2])) {
 				// if task status is ONGOING, we can only change it to DONE
-				if (!tempTask
-						.getStatus()
+				if (!Status.intToStatus(spinnerTaskStatus
+						.getSelectedItemPosition())
 						.toString()
 						.equals(getResources().getStringArray(
-								R.array.taskinfo_priority)[3])) {
+								R.array.taskinfo_status)[3])) {
 					Toast.makeText(this, R.string.taskinfo_status_done,
 							Toast.LENGTH_LONG).show();
 					return;
@@ -286,21 +286,23 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 	}
 
 	private void updateTaskOwner() {
-
+		
 		// only status is in to do or ONGOING
 		if ((!tempTaskOldStatus.toString().equals(
-				getResources().getStringArray(R.array.taskinfo_priority)[1]))
+				getResources().getStringArray(R.array.taskinfo_status)[1]))
 				&& (!tempTaskOldStatus.toString().equals(
 						getResources()
-								.getStringArray(R.array.taskinfo_priority)[2]))) {
+								.getStringArray(R.array.taskinfo_status)[2]))) {
 			Toast.makeText(this, R.string.task_assignme_reject,
 					Toast.LENGTH_LONG).show();
 			return;
 		}
 
-		User tempUser = (User) spinnerTaskAssingee.getSelectedItem();
+		User tempUser = LoginSession.getInstance().getLoggedInUser();
 		tempTask.setOwnerID(tempUser.getUserID());
 		HandyKBDBHelper.getDBHelperInstance().updateTaskInfo(tempTask);
+		
+		finish(); 
 	}
 
 	private void enterEditMode() {
