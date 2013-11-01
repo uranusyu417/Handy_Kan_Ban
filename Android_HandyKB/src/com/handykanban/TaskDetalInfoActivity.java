@@ -70,9 +70,9 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 				tempTaskId = b.getInt("TASK_ID");
 				tempTask = HandyKBDBHelper.getDBHelperInstance().getTaskById(
 						tempTaskId);
-				tempTaskOwner = HandyKBDBHelper.getDBHelperInstance().getUserByTask(
-						tempTask);
-				
+				tempTaskOwner = HandyKBDBHelper.getDBHelperInstance()
+						.getUserByTask(tempTask);
+
 				tempTaskOldStatus = tempTask.getStatus();
 
 				enterEditMode();
@@ -85,23 +85,12 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private void restartSelf(int newTaskId)
+	private void showHintAndFinish()
 
 	{
-		Intent intent = getIntent();
-		Bundle b = intent.getExtras();
-
-		b.putInt("TASK_MODE", EDIT_MODE);
-		b.putInt("TASK_ID", newTaskId);
-		
-		intent.putExtras(b);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		intent.putExtras(b);
-
+		Toast.makeText(this, R.string.taskinfo_dbupdate, Toast.LENGTH_SHORT)
+				.show();
 		finish();
-
-		startActivity(intent);
-
 	}
 
 	@Override
@@ -203,7 +192,7 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		case CREATE_MODE: {
 			Task newTask = new Task();
 			User tempUser = (User) spinnerTaskAssingee.getSelectedItem();
-			//int newTaskId;
+			// int newTaskId;
 
 			newTask.setTitle(editTextTaskTitle.getText().toString());
 			newTask.setDetail(editTextTaskDetail.getText().toString());
@@ -214,28 +203,27 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 			newTask.setOwnerID(tempUser.getUserID());
 
-			newTask.setProjectID(LoginSession.getInstance().getActiveProject().getProjectID());
+			newTask.setProjectID(LoginSession.getInstance().getActiveProject()
+					.getProjectID());
 
-			//newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
+			// newTaskId = HandyKBDBHelper.getDBHelperInstance().addNewTask(
 			HandyKBDBHelper.getDBHelperInstance().addNewTask(newTask);
 
-			//restartSelf(newTaskId); //remove by REMOND
-			finish();
+			showHintAndFinish();
+
 			return;
 		}
 		case EDIT_MODE: {
 			User tempUser = (User) spinnerTaskAssingee.getSelectedItem();
-			Calendar cal = Calendar.getInstance();
-			String dateStr = cal.get(Calendar.YEAR) + "-"
-					+ cal.get(Calendar.MONTH) + "-"
-					+ cal.get(Calendar.DAY_OF_MONTH);
 
-			if (tempTaskOldStatus.toString()
-					.equals(getResources().getStringArray(
-							R.array.taskinfo_status)[1])) {
+			String dateStr = this.getCurrentDate();
+
+			if (tempTaskOldStatus.toString().equals(
+					getResources().getStringArray(R.array.taskinfo_status)[1])) {
 				// if task status is to do, we can only change it to ONGOING
-				if (!Status.intToStatus(spinnerTaskStatus
-						.getSelectedItemPosition())
+				if (!Status
+						.intToStatus(
+								spinnerTaskStatus.getSelectedItemPosition())
 						.toString()
 						.equals(getResources().getStringArray(
 								R.array.taskinfo_status)[2])) {
@@ -246,12 +234,12 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 				// change the startDate
 				tempTask.setStartDate(dateStr);
-			} else if (tempTaskOldStatus.toString()
-					.equals(getResources().getStringArray(
-							R.array.taskinfo_status)[2])) {
+			} else if (tempTaskOldStatus.toString().equals(
+					getResources().getStringArray(R.array.taskinfo_status)[2])) {
 				// if task status is ONGOING, we can only change it to DONE
-				if (!Status.intToStatus(spinnerTaskStatus
-						.getSelectedItemPosition())
+				if (!Status
+						.intToStatus(
+								spinnerTaskStatus.getSelectedItemPosition())
 						.toString()
 						.equals(getResources().getStringArray(
 								R.array.taskinfo_status)[3])) {
@@ -274,9 +262,9 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 			tempTask.setOwnerID(tempUser.getUserID());
 
 			HandyKBDBHelper.getDBHelperInstance().updateTaskInfo(tempTask);
-			
-			finish(); 
-			
+
+			showHintAndFinish();
+
 			break;
 		}
 		default:
@@ -286,13 +274,13 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 	}
 
 	private void updateTaskOwner() {
-		
+
 		// only status is in to do or ONGOING
 		if ((!tempTaskOldStatus.toString().equals(
 				getResources().getStringArray(R.array.taskinfo_status)[1]))
-				&& (!tempTaskOldStatus.toString().equals(
-						getResources()
-								.getStringArray(R.array.taskinfo_status)[2]))) {
+				&& (!tempTaskOldStatus.toString()
+						.equals(getResources().getStringArray(
+								R.array.taskinfo_status)[2]))) {
 			Toast.makeText(this, R.string.task_assignme_reject,
 					Toast.LENGTH_LONG).show();
 			return;
@@ -301,8 +289,8 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		User tempUser = LoginSession.getInstance().getLoggedInUser();
 		tempTask.setOwnerID(tempUser.getUserID());
 		HandyKBDBHelper.getDBHelperInstance().updateTaskInfo(tempTask);
-		
-		finish(); 
+
+		showHintAndFinish();
 	}
 
 	private void enterEditMode() {
@@ -310,18 +298,18 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 		User LoginUser = LoginSession.getInstance().getLoggedInUser();
 
-		if (LoginUser.getUserID() == tempTaskOwner.getUserID()) {
-			if (LoginUser.isPoRole()) {
-				spinnerTaskAssingee.setEnabled(false);
-				spinnerTaskPri.setEnabled(true);
-				spinnerTaskStatus.setEnabled(false);
+		if (LoginUser.isPoRole()) {
+			spinnerTaskAssingee.setEnabled(false);
+			spinnerTaskPri.setEnabled(true);
+			spinnerTaskStatus.setEnabled(false);
 
-				editTextTaskDetail.setEnabled(true);
-				editTextTaskTitle.setEnabled(true);
+			editTextTaskDetail.setEnabled(true);
+			editTextTaskTitle.setEnabled(true);
 
-				buttonAssignToMe.setVisibility(Button.INVISIBLE);
-				buttonTaskUpdate.setVisibility(Button.VISIBLE);
-			} else if (LoginUser.isDesignerRole()) {
+			buttonAssignToMe.setVisibility(Button.INVISIBLE);
+			buttonTaskUpdate.setVisibility(Button.VISIBLE);
+		} else if (LoginUser.isDesignerRole()) {
+			if (LoginUser.getUserID() == tempTaskOwner.getUserID()) {
 				spinnerTaskAssingee.setEnabled(false);
 				spinnerTaskPri.setEnabled(false);
 				spinnerTaskStatus.setEnabled(true);
@@ -331,17 +319,17 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 				buttonAssignToMe.setVisibility(Button.INVISIBLE);
 				buttonTaskUpdate.setVisibility(Button.VISIBLE);
+			} else {
+				spinnerTaskAssingee.setEnabled(false);
+				spinnerTaskPri.setEnabled(false);
+				spinnerTaskStatus.setEnabled(false);
+
+				editTextTaskDetail.setEnabled(false);
+				editTextTaskTitle.setEnabled(false);
+
+				buttonAssignToMe.setEnabled(true);
+				buttonTaskUpdate.setEnabled(false);
 			}
-		} else {
-			spinnerTaskAssingee.setEnabled(false);
-			spinnerTaskPri.setEnabled(false);
-			spinnerTaskStatus.setEnabled(false);
-
-			editTextTaskDetail.setEnabled(false);
-			editTextTaskTitle.setEnabled(false);
-
-			buttonAssignToMe.setEnabled(true);
-			buttonTaskUpdate.setEnabled(false);
 		}
 	}
 
@@ -357,5 +345,57 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 
 		buttonAssignToMe.setVisibility(Button.INVISIBLE);
 		buttonTaskUpdate.setVisibility(Button.VISIBLE);
+	}
+
+	private String getCurrentDate() {
+		Calendar cal = Calendar.getInstance();
+
+		// year
+		String dateStr = cal.get(Calendar.YEAR) + "-";
+
+		// month
+		switch (cal.get(Calendar.MONTH)) {
+		case Calendar.JANUARY:
+			dateStr += "1";
+			break;
+		case Calendar.FEBRUARY:
+			dateStr += "2";
+			break;
+		case Calendar.MARCH:
+			dateStr += "3";
+			break;
+		case Calendar.APRIL:
+			dateStr += "4";
+			break;
+		case Calendar.MAY:
+			dateStr += "5";
+			break;
+		case Calendar.JUNE:
+			dateStr += "6";
+			break;
+		case Calendar.JULY:
+			dateStr += "7";
+			break;
+		case Calendar.AUGUST:
+			dateStr += "8";
+			break;
+		case Calendar.SEPTEMBER:
+			dateStr += "9";
+			break;
+		case Calendar.OCTOBER:
+			dateStr += "10";
+			break;
+		case Calendar.NOVEMBER:
+			dateStr += "11";
+			break;
+		case Calendar.DECEMBER:
+			dateStr += "12";
+			break;
+		default:
+		}
+		// day of month
+		dateStr += "-" + cal.get(Calendar.DAY_OF_MONTH);
+
+		return dateStr;
 	}
 }

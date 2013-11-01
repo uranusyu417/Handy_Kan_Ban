@@ -37,5 +37,6 @@
     <string name="taskinfo_status_ongoing">Task Status Should Be Set To ONGOING</string>
     <string name="taskinfo_status_done">Task Status Should Be Set To DONE</string>
     <string name="task_assignme_reject">Task Status Not ONGOING OR TODO</string>
+    <string name="taskinfo_dbupdate">Database Update Successfully</string>
 
 </resources>

@@ -27,6 +27,7 @@
 
         <Spinner
             android:id="@+id/spinnerTaskPriority"
+            android:layout_marginLeft="30dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -49,10 +50,11 @@
             android:id="@+id/textViewTaskStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status  " />
+            android:text="Status" />
 
         <Spinner
             android:id="@+id/spinnerTaskStatus"
+            android:layout_marginLeft="30dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -70,6 +72,7 @@
 
         <Spinner
             android:id="@+id/spinnerTaskAssingee"
+            android:layout_marginLeft="15dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
