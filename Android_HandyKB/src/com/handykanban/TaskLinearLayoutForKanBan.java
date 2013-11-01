@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,6 +42,7 @@ public class TaskLinearLayoutForKanBan extends LinearLayout implements View.OnCl
 	 * initialize customized gui with data
 	 * @param _task
 	 */
+	@SuppressWarnings("unused")
 	private void postInit(Context _context, Task _task)
 	{
 		this.task = _task;
@@ -61,7 +61,15 @@ public class TaskLinearLayoutForKanBan extends LinearLayout implements View.OnCl
 		if(_task.getStatus() == Task.Status.TODO)
 		{
 			TaskTitle.setText(_task.getTitle());
-			TaskOwner.setVisibility(INVISIBLE);
+			User u = new User(_task.getOwnerID());
+			if (u != null) 
+			{
+				TaskOwner.setText(u.getName());
+			} 
+			else 
+			{
+				TaskOwner.setVisibility(INVISIBLE);
+			}
 			TaskDate.setVisibility(INVISIBLE);
 		}
 		else if(_task.getStatus() == Task.Status.ONGOING)
