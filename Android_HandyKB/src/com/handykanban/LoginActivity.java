@@ -50,6 +50,15 @@ public class LoginActivity extends Activity {
 	private TextView mLoginStatusMessageView;
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		mPasswordView.setText("");
+		mUserView.setText("");
+		
+	}
+	
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -158,6 +167,7 @@ public class LoginActivity extends Activity {
 				{	
 					LoginSession.getInstance().setLoggedInUser(u);
 					Intent intent = new Intent(this, KanBanUIActivity.class);
+					showProgress(true);
 					startActivity(intent);
 				}
 				else
@@ -264,5 +274,8 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
+		
+
+		
 	}
 }

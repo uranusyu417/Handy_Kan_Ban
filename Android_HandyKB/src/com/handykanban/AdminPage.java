@@ -137,7 +137,7 @@ public class AdminPage extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(arg0.getContext(), LoginActivity.class));
+				finish();
 				
 			}
 		
