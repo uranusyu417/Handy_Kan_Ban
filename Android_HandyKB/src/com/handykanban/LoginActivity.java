@@ -167,7 +167,6 @@ public class LoginActivity extends Activity {
 				{	
 					LoginSession.getInstance().setLoggedInUser(u);
 					Intent intent = new Intent(this, KanBanUIActivity.class);
-					showProgress(true);
 					startActivity(intent);
 				}
 				else

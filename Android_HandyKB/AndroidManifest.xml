@@ -44,7 +44,7 @@
             android:label="@string/title_activity_configuration" >
         </activity>
         <activity 
-            android:name="PickupToDoTask"
+            android:name="com.handykanban.PickupToDoTask"
             android:label="@string/title_activity_pickup_to_do_task" >
         </activity>
     </application>

@@ -31,7 +31,7 @@
     <string name="SELECT_TASK_PO">Manage tasks in backlog/todo list</string>
     <string name="CREATE_TASK_PO">Create New Task</string>
     <string name="CONFIG_PROJECT_PO">Configure Project Setting</string>
-    <string name="title_activity_pickup_to_do_task">PickupToDoTask</string>
+    <string name="title_activity_pickup_to_do_task">Manage TODO List</string>
     <string name="update_todo_task">Update</string>
     <string name="title_activity_configuration">Configuration</string>
     <string name="taskinfo_status_ongoing">Task Status Should Be Set To ONGOING</string>

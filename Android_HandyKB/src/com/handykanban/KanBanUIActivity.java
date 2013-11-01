@@ -288,6 +288,7 @@ public class KanBanUIActivity extends Activity {
 		{
 			refreshMenuState(optionMenu);
 		}
+		this.setTitle("Selected Project: "+p.getName());
 	}
 	
 	private void refreshMenuState(Menu menu)
