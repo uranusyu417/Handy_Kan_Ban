@@ -17,7 +17,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/NOTE" />
+            android:text="@string/NOTE"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editTextNote"
@@ -49,11 +50,13 @@
             android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginBottom="15dp"
+            android:text="TextView"
+            android:textSize="24sp" />
 
         <LinearLayout
             android:id="@+id/linearLayoutKanBanTasks"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </LinearLayout>

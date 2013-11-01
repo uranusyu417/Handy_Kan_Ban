@@ -36,4 +36,12 @@
         <item name="android:background">#00FF00</item>
     </style>
 
+    <style name="StyleKanBanTaskGroupHeaderTextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="StyleKanBanTaskTextView">
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

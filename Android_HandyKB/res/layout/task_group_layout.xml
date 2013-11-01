@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:id="@+id/linearLayoutMain">
+    android:id="@+id/linearLayoutMain"
+    android:background="#EBF1EE">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" 
+        android:background="#CD9089">
 
         <TextView
             android:id="@+id/textViewHeaderStatus"
+            style="@style/StyleKanBanTaskGroupHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-        
 
         <TextView
             android:id="@+id/textViewHeaderCount"
+            style="@style/StyleKanBanTaskGroupHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-        
 
     </LinearLayout>
 
