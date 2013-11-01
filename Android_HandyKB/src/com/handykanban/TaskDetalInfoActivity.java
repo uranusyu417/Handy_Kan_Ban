@@ -93,13 +93,6 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		finish();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.task_detal_info, menu);
-		return true;
-	}
-
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.buttonTaskUpdate:
@@ -297,6 +290,21 @@ public class TaskDetalInfoActivity extends Activity implements OnClickListener {
 		task_mode = EDIT_MODE;
 
 		User LoginUser = LoginSession.getInstance().getLoggedInUser();
+		
+		if (tempTaskOldStatus.toString().equals(
+				getResources().getStringArray(R.array.taskinfo_status)[3])) {
+			// read only for everyone
+			spinnerTaskAssingee.setEnabled(false);
+			spinnerTaskPri.setEnabled(false);
+			spinnerTaskStatus.setEnabled(false);
+
+			editTextTaskDetail.setEnabled(false);
+			editTextTaskTitle.setEnabled(false);
+
+			buttonAssignToMe.setVisibility(Button.INVISIBLE);
+			buttonTaskUpdate.setVisibility(Button.INVISIBLE);
+			return;
+		}
 
 		if (LoginUser.isPoRole()) {
 			spinnerTaskAssingee.setEnabled(false);
