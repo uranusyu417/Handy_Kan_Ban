@@ -43,7 +43,10 @@
             android:name="com.handykanban.Configuration"
             android:label="@string/title_activity_configuration" >
         </activity>
-        <activity android:name="PickupToDoTask"></activity>
+        <activity 
+            android:name="PickupToDoTask"
+            android:label="@string/title_activity_pickup_to_do_task" >
+        </activity>
     </application>
 
 </manifest>
